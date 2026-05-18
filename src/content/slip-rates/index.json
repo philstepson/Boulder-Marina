@@ -1,0 +1,32 @@
+{
+  "seasonNote": "12-month season contracts available for maximum savings. First payment includes first month's rent plus electric fee and, if applicable, trailer/cradle/jack stand storage fee. Any remaining balance due in full by November 30th.",
+  "electricNote": "24 ft and under: $50.00/season · 25 ft and up: $80.00/season",
+  "storageNote": "Cradle/Trailer/Jack Stand storage: $75.00/season · Dry storage: $99.00/month ($1,188.00/season)",
+  "dayUseRate": "$25.00 flat rate per day per boat · Trailer parking $7.50/day",
+  "powerWash": "$75.00 — bottom only",
+  "liftInOut": "$200.00 per ride for first 2 hours. Hourly labor rate applies thereafter. Schedule 1 week in advance. No appointment = no lift. Arrive 30 minutes early.",
+  "laborRate": "$125.00 per hour",
+  "bottomPaint": "$30.00 per foot plus cost of materials. Includes light sanding, wash, and labor. Paint and supplies ordered and supplied by marina.",
+  "rates": [
+    { "lengthFt": 18, "monthlyRate": 139.50, "seasonRate": 1674.00, "monthToMonth": 148.50 },
+    { "lengthFt": 19, "monthlyRate": 147.25, "seasonRate": 1767.00, "monthToMonth": 156.75 },
+    { "lengthFt": 20, "monthlyRate": 155.00, "seasonRate": 1860.00, "monthToMonth": 165.00 },
+    { "lengthFt": 21, "monthlyRate": 162.75, "seasonRate": 1953.00, "monthToMonth": 173.25 },
+    { "lengthFt": 22, "monthlyRate": 170.50, "seasonRate": 2046.00, "monthToMonth": 181.50 },
+    { "lengthFt": 23, "monthlyRate": 178.25, "seasonRate": 2139.00, "monthToMonth": 189.75 },
+    { "lengthFt": 24, "monthlyRate": 186.00, "seasonRate": 2232.00, "monthToMonth": 198.00 },
+    { "lengthFt": 25, "monthlyRate": 193.75, "seasonRate": 2325.00, "monthToMonth": 206.25 },
+    { "lengthFt": 26, "monthlyRate": 201.50, "seasonRate": 2418.00, "monthToMonth": 214.50 },
+    { "lengthFt": 27, "monthlyRate": 209.25, "seasonRate": 2511.00, "monthToMonth": 222.75 },
+    { "lengthFt": 28, "monthlyRate": 217.00, "seasonRate": 2604.00, "monthToMonth": 231.00 },
+    { "lengthFt": 29, "monthlyRate": 224.75, "seasonRate": 2697.00, "monthToMonth": 239.25 },
+    { "lengthFt": 30, "monthlyRate": 232.50, "seasonRate": 2790.00, "monthToMonth": 247.50 },
+    { "lengthFt": 31, "monthlyRate": 240.25, "seasonRate": 2883.00, "monthToMonth": 255.75 },
+    { "lengthFt": 32, "monthlyRate": 248.00, "seasonRate": 2976.00, "monthToMonth": 264.00 },
+    { "lengthFt": 33, "monthlyRate": 255.75, "seasonRate": 3069.00, "monthToMonth": 272.25 },
+    { "lengthFt": 34, "monthlyRate": 263.50, "seasonRate": 3162.00, "monthToMonth": 280.50 },
+    { "lengthFt": 35, "monthlyRate": 271.25, "seasonRate": 3255.00, "monthToMonth": 288.75 },
+    { "lengthFt": 36, "monthlyRate": 279.00, "seasonRate": 3348.00, "monthToMonth": 297.00 },
+    { "lengthFt": 37, "monthlyRate": 286.75, "seasonRate": 3441.00, "monthToMonth": 305.25 }
+  ]
+}

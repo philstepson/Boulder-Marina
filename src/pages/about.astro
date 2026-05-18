@@ -1,0 +1,405 @@
+---
+// src/pages/about.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav        from '../components/Nav.astro';
+import Footer     from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="About Boulder Marina — Carlyle Lake, Illinois"
+  description="Boulder Access Marina is a full-service, privately owned marina on the northeastern shore of Carlyle Lake — the largest man-made lake in Illinois. Floating concrete docks, a ship's store, and home of Boulder Yacht Club since 1983."
+>
+  <Nav />
+
+  <main>
+
+    <!-- ── MASTHEAD ── -->
+    <div class="about-masthead">
+      <img
+        src="/uploads/marina-panorama.jpg"
+        alt="Boulder Marina on Carlyle Lake, Illinois"
+        width="1024" height="298"
+        loading="eager"
+        fetchpriority="high"
+        class="about-masthead-img"
+      />
+      <div class="about-masthead-overlay" aria-hidden="true"></div>
+      <div class="about-masthead-content container">
+        <p class="section-tag">Boulder Access Marina</p>
+        <h1>Life on the Northeastern Shore.</h1>
+      </div>
+    </div>
+
+    <!-- ── INTRO ── -->
+    <section class="section about-intro" aria-labelledby="about-intro-heading">
+      <div class="container about-intro-grid">
+        <div class="about-intro-text">
+          <p class="section-tag">Boulder Marina's Tradition</p>
+          <h2 id="about-intro-heading">The only marina on the eastern shore.</h2>
+          <p>
+            A tradition since Carlyle Lake's very beginning, Boulder Marina is the only marina on
+            the eastern shore — the largest man-made lake in Illinois.
+          </p>
+          <p>
+            Whether you sail, motor, kayak, or paddleboard, our boaters are united by a shared
+            passion for time on the water and a commitment to safe boating practices.
+          </p>
+          <p>
+            Boulder Marina is more than a full-service marina — it's a community of boaters who
+            look out for one another and welcome newcomers into the fellowship of the lake.
+          </p>
+
+          <h3 class="about-sub-heading">What Makes Boulder Marina Unique?</h3>
+          <p>
+            What truly sets Boulder Marina apart is its welcoming, tight-knit community. Despite
+            differences in age, background, or boat preference, our members aren't just fellow
+            tenants — they're a second family. This isn't a community of elite "yachters," but
+            real people who love the water. Some race, many paddle, most gather for social events,
+            and all of us cherish every moment spent on the lake.
+          </p>
+          <p>
+            Many boaters use their vessels as cabins on the water — spending the night, soaking in
+            the lake's ambiance, and waking up to its breathtaking views. It's a distinctly
+            family-oriented community.
+          </p>
+
+          <ul class="about-pillars">
+            <li><strong>All Boaters Welcome</strong> — Sailors, racers, cruisers, motor boats, pontoons, and newcomers.</li>
+            <li><strong>A Tight-Knit Community</strong> — Share stories, skills, and unforgettable memories.</li>
+          </ul>
+
+          <p class="about-tagline">Don't just sail — belong.</p>
+        </div>
+        <div class="about-intro-visual">
+          <img
+            src="/uploads/marina-panorama.jpg"
+            alt="Boulder Marina floating docks — Carlyle Lake"
+            width="1024" height="298"
+            loading="lazy"
+            class="about-intro-img"
+          />
+          <div class="about-stats-grid">
+            {[
+              { val: '26,000', label: 'Acre Lake' },
+              { val: '18–37',  label: 'Ft Slips Available' },
+              { val: '1983',   label: 'BYC Home Port Since' },
+              { val: '$125',   label: 'Per Hour Labor Rate' },
+            ].map(s => (
+              <div class="about-stat">
+                <span class="about-stat-val">{s.val}</span>
+                <span class="about-stat-label">{s.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── AMENITIES ── -->
+    <section class="section amenities-section" aria-labelledby="amenities-heading">
+      <div class="container">
+        <p class="section-tag">What's On Site</p>
+        <h2 id="amenities-heading">Everything you need — nothing you don't.</h2>
+        <div class="amenities-grid">
+          {[
+            { icon: '⚓', title: 'Floating Concrete Docks',  body: 'Stable, durable slips for vessels 18–37 ft. Water and electric hookups at every slip.' },
+            { icon: '⛽', title: 'Gas Dock',                 body: 'On-site fuel dock for members and transient boaters. No long drive to the pump.' },
+            { icon: '🏪', title: "Ship's Store",             body: 'Snacks, ice cream, marine hardware, engine oils, firewood, paddleboards, and treasure chests for kids. Open Thu–Sun.' },
+            { icon: '🚿', title: 'Heated Bathhouse',        body: 'Clean, heated showers and restrooms on site for slip holders and day visitors.' },
+            { icon: '📶', title: 'Clubhouse & WiFi',         body: 'Heated clubhouse with free WiFi and satellite TV. A comfortable place to wait out weather or just hang out.' },
+            { icon: '🌅', title: 'Sunset Pavilion',          body: 'A covered outdoor pavilion with the best sunset views on the lake. Perfect for gathering after a long day on the water.' },
+            { icon: '🚤', title: 'Private Boat Ramp',        body: 'Members-only boat ramp for launching and retrieving. No public ramp crowds.' },
+            { icon: '🏗️', title: 'Lift & Dry Storage',      body: 'Haul-out and launch service with our lift. On-site dry storage by the month or full season.' },
+          ].map(a => (
+            <article class="amenity-card">
+              <span class="amenity-icon" aria-hidden="true">{a.icon}</span>
+              <h3>{a.title}</h3>
+              <p>{a.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ── LOCATION ── -->
+    <section class="section location-section" aria-labelledby="location-heading">
+      <div class="container location-grid">
+        <div class="location-text">
+          <p class="section-tag">Find Us</p>
+          <h2 id="location-heading">On the northeastern shore of Carlyle Lake.</h2>
+          <p>
+            Carlyle Lake is a 26,000-acre Army Corps of Engineers reservoir in southwestern Illinois.
+            It's the largest man-made lake in the state and is widely considered one of the premier
+            sailing lakes in the Midwest — consistent wind, minimal powerboat traffic on the sailing
+            side, and water deep enough for keelboats.
+          </p>
+          <p>
+            Boulder Marina is on the northeastern shore — away from the main public beaches and
+            campgrounds, with a quieter, more nautical atmosphere.
+          </p>
+          <address class="location-address">
+            <div class="location-detail">
+              <span class="location-label">Address</span>
+              <span>26000 Boulder Access Rd, Boulder, IL 62231</span>
+            </div>
+            <div class="location-detail">
+              <span class="location-label">Phone</span>
+              <a href="tel:+16182263223">(618) 226-3223</a>
+            </div>
+            <div class="location-detail">
+              <span class="location-label">Email</span>
+              <a href="mailto:bouldermarina@gmail.com">bouldermarina@gmail.com</a>
+            </div>
+            <div class="location-detail">
+              <span class="location-label">VHF Radio</span>
+              <span>Channel 16</span>
+            </div>
+          </address>
+          <a href="/contact" class="btn" style="margin-top: 28px; display: inline-block;">Get Directions & Contact</a>
+        </div>
+
+        <div class="store-hours-card">
+          <p class="section-tag">Ship's Store Hours</p>
+          <div class="hours-table">
+            <span>Thursday – Friday</span><span>11:00 AM – 6:00 PM</span>
+            <span>Saturday</span>          <span>9:00 AM – 5:00 PM</span>
+            <span>Sunday</span>            <span>9:00 AM – 3:30 PM</span>
+            <span>Holidays</span>          <span>9:00 AM – 3:30 PM</span>
+          </div>
+          <p class="hours-note">
+            Ice cream · Snacks · Marine hardware · Paddleboards · Kids' treasure chests
+          </p>
+          <div class="gold-rule" style="margin: 28px 0;"></div>
+          <p class="section-tag">BYC Home Port</p>
+          <p class="byc-blurb">
+            Boulder Marina is the home port of <a href="/boulder-yacht-club">Boulder Yacht Club</a> —
+            a 501(c)(7) nonprofit sailing club founded here in 1983. Racing, social events, Sea Scouts,
+            and a community that'll make you feel like a local by your second season.
+          </p>
+          <a href="/boulder-yacht-club" class="btn" style="margin-top: 20px; display: inline-block;">Explore BYC</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA ── -->
+    <section class="cta-banner" aria-label="Reserve a slip">
+      <div class="container cta-inner">
+        <div>
+          <p class="section-tag">2026 Season</p>
+          <h2>Ready to find your dock?</h2>
+          <p>Slip rates start at $139.50/mo for 18 ft vessels. Day use available at $25 flat.</p>
+        </div>
+        <div class="cta-buttons">
+          <a href="/contact#slip-reservation" class="btn btn--fill">Reserve a Slip</a>
+          <a href="/services"                  class="btn">View All Rates</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  /* ── MASTHEAD ── */
+  .about-masthead { position: relative; width: 100%; line-height: 0; }
+  .about-masthead-img {
+    width: 100%; height: auto; display: block;
+    filter: brightness(0.9) saturate(0.85);
+  }
+  .about-masthead-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(6,9,15,0.45) 0%,
+      rgba(6,9,15,0.15) 40%,
+      rgba(6,9,15,0.65) 100%
+    );
+  }
+  .about-masthead-content {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: clamp(16px, 4%, 36px);
+    z-index: 10;
+  }
+  .about-masthead-content h1 {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: clamp(36px, 5.5vw, 72px);
+    color: #ffffff;
+    line-height: 1.05;
+    margin-top: 8px;
+  }
+
+  /* ── INTRO ── */
+  .section { padding: var(--section-pad) 0; }
+  .about-intro { background: var(--navy); }
+  .about-intro-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 72px; align-items: start;
+  }
+  .about-intro-text h2 {
+    font-family: var(--font-serif); font-weight: 600;
+    font-size: clamp(26px, 3vw, 42px); line-height: 1.15; margin-bottom: 20px;
+  }
+  .about-sub-heading {
+    font-family: var(--font-serif); font-weight: 600;
+    font-size: clamp(20px, 2.2vw, 28px); line-height: 1.2;
+    margin: 32px 0 14px; color: var(--cream);
+  }
+  .about-intro-text p {
+    font-size: 15px; font-weight: 400; line-height: 1.85;
+    color: rgba(221,213,196,0.82); margin-bottom: 16px;
+  }
+  .about-pillars {
+    list-style: none; margin: 20px 0 24px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .about-pillars li {
+    font-size: 14px; font-weight: 400; line-height: 1.7;
+    color: rgba(221,213,196,0.78);
+    padding-left: 18px; position: relative;
+  }
+  .about-pillars li::before {
+    content: '—'; position: absolute; left: 0;
+    color: var(--gold);
+  }
+  .about-pillars strong { color: var(--cream); }
+  .about-tagline {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: clamp(17px, 1.8vw, 22px); font-weight: 600;
+    color: var(--gold); margin-top: 28px !important;
+  }
+  .about-intro-img {
+    width: 100%; display: block;
+    filter: brightness(0.82) saturate(0.8);
+    margin-bottom: 24px;
+  }
+  .about-stats-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+    background: var(--gold-dim);
+  }
+  .about-stat {
+    background: var(--navy); padding: 20px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .about-stat-val {
+    font-family: var(--font-serif); font-weight: 700;
+    font-size: clamp(22px, 2.5vw, 32px); color: var(--gold); line-height: 1;
+  }
+  .about-stat-label {
+    font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+    color: rgba(221,213,196,0.4);
+  }
+
+  /* ── AMENITIES ── */
+  .amenities-section {
+    background: var(--navy-mid);
+    border-top: 1px solid var(--gold-dim);
+    border-bottom: 1px solid var(--gold-dim);
+  }
+  .amenities-section h2 {
+    font-family: var(--font-serif); font-weight: 600;
+    font-size: clamp(24px, 3vw, 40px); line-height: 1.15;
+    margin-bottom: 48px;
+  }
+  .amenities-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--gold-glow);
+  }
+  .amenity-card {
+    padding: 32px 24px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--gold-dim);
+    transition: background .3s, border-color .3s;
+  }
+  .amenity-card:hover { background: var(--gold-glow); border-color: rgba(196,154,42,0.35); }
+  .amenity-icon { font-size: 24px; display: block; margin-bottom: 14px; }
+  .amenity-card h3 {
+    font-family: var(--font-serif); font-weight: 600;
+    font-size: 18px; margin-bottom: 10px;
+  }
+  .amenity-card p {
+    font-size: 14px; font-weight: 400; line-height: 1.85;
+    color: rgba(221,213,196,0.78);
+  }
+
+  /* ── LOCATION ── */
+  .location-section { background: var(--navy); }
+  .location-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 72px; align-items: start;
+  }
+  .location-text h2 {
+    font-family: var(--font-serif); font-weight: 600;
+    font-size: clamp(24px, 3vw, 40px); line-height: 1.15; margin-bottom: 20px;
+  }
+  .location-text p {
+    font-size: 15px; font-weight: 400; line-height: 1.85;
+    color: rgba(221,213,196,0.82); margin-bottom: 16px;
+  }
+  .location-address { font-style: normal; display: flex; flex-direction: column; gap: 14px; margin-top: 28px; }
+  .location-detail { display: flex; flex-direction: column; gap: 3px; }
+  .location-label {
+    font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold);
+  }
+  .location-detail span, .location-detail a {
+    font-size: 14px; font-weight: 300; color: var(--cream);
+    text-decoration: none;
+  }
+  .location-detail a:hover { color: var(--gold); }
+
+  .store-hours-card {
+    background: var(--navy-mid);
+    border: 1px solid var(--gold-dim);
+    padding: 40px;
+  }
+  .hours-table {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px;
+    font-size: 13px; margin-top: 16px; margin-bottom: 16px;
+  }
+  .hours-table span:nth-child(odd)  { color: rgba(221,213,196,0.5); font-weight: 300; }
+  .hours-table span:nth-child(even) { color: var(--gold); font-weight: 400; }
+  .hours-note {
+    font-size: 11px; font-weight: 300; color: rgba(221,213,196,0.35);
+    line-height: 1.7;
+  }
+  .byc-blurb {
+    font-size: 13px; font-weight: 300; line-height: 1.85;
+    color: rgba(221,213,196,0.55); margin-top: 8px;
+  }
+  .byc-blurb a { color: var(--gold); text-decoration: none; }
+  .byc-blurb a:hover { text-decoration: underline; }
+
+  /* ── CTA BANNER ── */
+  .cta-banner {
+    background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy-mid) 100%);
+    border-top: 1px solid var(--gold-dim);
+    padding: 80px 0;
+  }
+  .cta-inner {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 36px;
+  }
+  .cta-inner h2 {
+    font-family: var(--font-serif); font-weight: 600;
+    font-size: clamp(24px, 3vw, 40px); margin-bottom: 12px;
+  }
+  .cta-inner p {
+    font-size: 15px; font-weight: 400; color: rgba(221,213,196,0.78);
+    max-width: 440px; line-height: 1.8;
+  }
+  .cta-buttons { display: flex; gap: 16px; flex-wrap: wrap; flex-shrink: 0; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    .about-intro-grid, .location-grid { grid-template-columns: 1fr; gap: 40px; }
+    .amenities-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 540px) {
+    .amenities-grid { grid-template-columns: 1fr; }
+    .about-stats-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>

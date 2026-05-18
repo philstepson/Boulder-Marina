@@ -1,0 +1,120 @@
+/* src/styles/global.css
+   Design tokens for the entire site.
+   Changing a color here changes it everywhere. */
+
+:root {
+  /* Brand palette */
+  --gold:          #c49a2a;
+  --gold-dim:      rgba(196, 154, 42, 0.18);
+  --gold-glow:     rgba(196, 154, 42, 0.07);
+  --navy:          #06090f;
+  --navy-mid:      #09111c;
+  --navy-light:    #0d1a2e;
+  --cream:         #ddd5c4;
+  --cream-dim:     rgba(221, 213, 196, 0.6);
+  --cream-faint:   rgba(221, 213, 196, 0.3);
+
+  /* Typography */
+  --font-serif:  'Cormorant Garamond', Georgia, serif;
+  --font-sans:   'DM Sans', system-ui, sans-serif;
+
+  /* Spacing scale */
+  --section-pad: clamp(64px, 8vw, 120px);
+  --container:   1200px;
+  --gutter:      40px;
+
+  /* Transitions */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 18px;
+}
+
+body {
+  font-family:      var(--font-sans);
+  background-color: var(--navy);
+  color:            var(--cream);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track  { background: var(--navy); }
+::-webkit-scrollbar-thumb  { background: var(--gold); border-radius: 3px; }
+
+/* Utility: container */
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* Section tag (e.g. "— Carlyle Lake, Illinois") */
+.section-tag {
+  font-family:    var(--font-sans);
+  font-weight:    300;
+  font-size:      10px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color:          var(--gold);
+  display:        flex;
+  align-items:    center;
+  gap:            14px;
+  margin-bottom:  18px;
+}
+.section-tag::before {
+  content:    '';
+  width:      32px;
+  height:     1px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+/* Buttons */
+.btn {
+  font-family:    var(--font-sans);
+  font-weight:    400;
+  font-size:      10px;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  padding:        14px 36px;
+  border:         1px solid var(--gold);
+  background:     transparent;
+  color:          var(--gold);
+  cursor:         pointer;
+  transition:     background 0.3s var(--ease), color 0.3s var(--ease);
+  display:        inline-block;
+  text-decoration: none;
+}
+.btn:hover { background: var(--gold); color: var(--navy); }
+.btn--fill  { background: var(--gold); color: var(--navy); }
+.btn--fill:hover { background: transparent; color: var(--gold); }
+
+/* Divider */
+.gold-rule {
+  width:      1px;
+  height:     60px;
+  background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+  margin:     0 auto;
+}
+
+/* Fade-in animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.9s var(--ease) both; }
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.45s; }
+.delay-3 { animation-delay: 0.7s; }
+
+/* Wave drift animation (hero SVG) */
+@keyframes waveDrift {
+  0%, 100% { transform: translateX(0) scaleY(1); }
+  50%       { transform: translateX(-14px) scaleY(1.04); }
+}

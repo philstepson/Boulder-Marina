@@ -1,0 +1,179 @@
+---
+// src/components/Footer.astro
+---
+
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-grid">
+
+      <!-- Brand column -->
+      <div class="footer-brand">
+        <div class="footer-logo-row">
+          <img src="/uploads/boulder-marina-logo.png" alt="Boulder Marina" width="38" height="38" loading="lazy" />
+          <div>
+            <div class="footer-name">Boulder Marina</div>
+            <div class="footer-sub">Life Unanchored</div>
+          </div>
+        </div>
+        <p class="footer-blurb">
+          Full-service marina on the northeastern shore of Carlyle Lake — the largest man-made lake in Illinois.
+          Home of <a href="/boulder-yacht-club">Boulder Yacht Club</a> since 1983.
+        </p>
+        <div class="footer-contact-pills">
+          <a href="tel:+16182263223">(618) 226-3223</a>
+          <a href="mailto:bouldermarina@gmail.com">bouldermarina@gmail.com</a>
+          <span>VHF Channel 16</span>
+        </div>
+      </div>
+
+      <!-- Marina column -->
+      <div>
+        <div class="footer-col-head">Marina</div>
+        <nav aria-label="Footer Marina links">
+          <a href="/about"           class="footer-link">About the Marina</a>
+          <a href="/services"        class="footer-link">Services & Rates</a>
+          <a href="/contact#slip-reservation" class="footer-link">Reserve a Slip</a>
+          <a href="/services#dry-storage"     class="footer-link">Dry Storage</a>
+          <a href="/ship-store"      class="footer-link">Ship's Store</a>
+          <a href="/gallery"         class="footer-link">Gallery</a>
+          <a href="/boats-for-sale"  class="footer-link">Boats for Sale</a>
+        </nav>
+      </div>
+
+      <!-- BYC column -->
+      <div>
+        <div class="footer-col-head">Boulder Yacht Club</div>
+        <nav aria-label="Footer BYC links">
+          <a href="/boulder-yacht-club"             class="footer-link">About BYC</a>
+          <a href="/boulder-yacht-club#membership"  class="footer-link">Join BYC</a>
+          <a href="/events?org=BYC"                 class="footer-link">Racing Calendar</a>
+          <a href="/events?org=BYC#social"          class="footer-link">Social Events</a>
+          <a href="/boulder-yacht-club#board"       class="footer-link">2026 Board</a>
+          <a href="https://www.facebook.com/groups/320371721353276" class="footer-link" target="_blank" rel="noopener">BYC Facebook Group</a>
+          <a href="https://www.facebook.com/Seascoutship9ranger/" class="footer-link" target="_blank" rel="noopener">Sea Scout Ship 9</a>
+        </nav>
+      </div>
+
+      <!-- Info column -->
+      <div>
+        <div class="footer-col-head">Find Us</div>
+        <address class="footer-address">
+          <p>26000 Boulder Access Rd</p>
+          <p>Boulder, IL 62231</p>
+        </address>
+        <div class="footer-col-head" style="margin-top: 24px;">Store Hours</div>
+        <div class="footer-hours">
+          <span>Thu – Fri</span><span>11:00 – 6:00</span>
+          <span>Saturday</span><span>9:00 – 5:00</span>
+          <span>Sunday</span><span>9:00 – 3:30</span>
+          <span>Holidays</span><span>9:00 – 3:30</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <span>© 2026 Boulder Access Marina · Carlyle Lake, Illinois</span>
+      <div class="footer-bottom-links">
+        <a href="/privacy">Privacy</a>
+        <a href="/contact">Contact</a>
+        <a href="/sitemap-index.xml">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer {
+    background:   #040609;
+    border-top:   1px solid var(--gold-dim);
+    padding:      72px 0 36px;
+    margin-top:   auto;
+  }
+
+  .footer-inner { display: flex; flex-direction: column; gap: 0; }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 56px;
+    border-bottom: 1px solid rgba(196,154,42,0.08);
+    margin-bottom: 28px;
+  }
+
+  .footer-logo-row {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 18px;
+  }
+  .footer-name {
+    font-family: var(--font-serif);
+    font-weight: 700; font-size: 18px; color: var(--cream);
+  }
+  .footer-sub {
+    font-family: var(--font-sans);
+    font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold);
+    margin-top: 3px;
+  }
+  .footer-blurb {
+    font-size: 12px; font-weight: 300; line-height: 1.8;
+    color: rgba(221,213,196,0.3); max-width: 240px; margin-bottom: 20px;
+  }
+  .footer-blurb a { color: var(--gold); text-decoration: none; }
+  .footer-blurb a:hover { text-decoration: underline; }
+
+  .footer-contact-pills {
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .footer-contact-pills a,
+  .footer-contact-pills span {
+    font-family: var(--font-sans); font-size: 11px; font-weight: 300;
+    color: rgba(196,154,42,0.5); text-decoration: none; transition: color 0.2s;
+  }
+  .footer-contact-pills a:hover { color: var(--gold); }
+
+  .footer-col-head {
+    font-family: var(--font-sans);
+    font-weight: 500; font-size: 9px; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 20px;
+  }
+
+  .footer-link {
+    display: block;
+    font-family: var(--font-sans); font-weight: 300; font-size: 12px;
+    color: rgba(221,213,196,0.38); text-decoration: none;
+    margin-bottom: 10px; transition: color 0.2s;
+  }
+  .footer-link:hover { color: var(--gold); }
+
+  .footer-address {
+    font-style: normal; font-family: var(--font-sans); font-weight: 300;
+    font-size: 12px; color: rgba(221,213,196,0.38); line-height: 1.8; margin-bottom: 4px;
+  }
+
+  .footer-hours {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px;
+    font-family: var(--font-sans); font-size: 11px;
+  }
+  .footer-hours span:nth-child(odd)  { color: rgba(221,213,196,0.38); font-weight: 300; }
+  .footer-hours span:nth-child(even) { color: var(--gold); font-weight: 400; }
+
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+    font-family: var(--font-sans); font-size: 10px; font-weight: 300;
+    color: rgba(221,213,196,0.2); letter-spacing: 0.5px;
+  }
+  .footer-bottom-links { display: flex; gap: 24px; }
+  .footer-bottom-links a {
+    color: rgba(221,213,196,0.2); text-decoration: none; transition: color 0.2s;
+  }
+  .footer-bottom-links a:hover { color: var(--gold); }
+
+  @media (max-width: 900px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 540px) {
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+</style>

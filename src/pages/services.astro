@@ -1,0 +1,183 @@
+---
+// src/pages/services.astro
+// In production: reads slip rates from TinaCMS JSON — owner updates prices in admin UI.
+// Rate changes go live in ~30 seconds via Cloudflare Pages rebuild.
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav        from '../components/Nav.astro';
+import Footer     from '../components/Footer.astro';
+
+// These would come from: await client.queries.slipRates(...)
+const rates = Array.from({ length: 20 }, (_, i) => {
+  const ft = 18 + i;
+  const mo = 139.50 + i * 7.75;
+  return { ft, monthly: mo, season: mo * 12, monthToMonth: mo * 1.065 };
+});
+---
+
+<BaseLayout
+  title="Services & Slip Rates — Boulder Marina | Carlyle Lake"
+  description="Full list of Boulder Marina services and slip rates for 2026. Seasonal slip contracts from $139.50/mo for 18–37 ft vessels. Lift-in/out, bottom paint, dry storage, and more."
+>
+  <Nav />
+
+  <main style="padding-top: 100px;">
+
+    <!-- Page Hero -->
+    <section class="page-hero container">
+      <p class="section-tag">2026 Season</p>
+      <h1>Services & Rates</h1>
+      <p class="page-hero-sub">Everything we offer — with pricing that doesn't require reading the fine print twice.</p>
+    </section>
+
+    <!-- Slip Rates Table -->
+    <section class="section container" id="slip-rates">
+      <div class="section-header">
+        <div>
+          <p class="section-tag">Slip Contracts</p>
+          <h2>12-Month Season Contracts</h2>
+        </div>
+        <a href="/contact#slip-reservation" class="btn btn--fill">Reserve a Slip</a>
+      </div>
+
+      <p class="rate-note">
+        First payment includes first month's rent + electric fee + any applicable cradle/trailer/jack stand storage fee.
+        Any remaining balance is due in full by November 30th.
+      </p>
+
+      <div class="rate-table" role="table" aria-label="Slip rates by vessel length">
+        <div class="rate-row rate-row--head" role="row">
+          <span role="columnheader">Length</span>
+          <span role="columnheader">Monthly (Season)</span>
+          <span role="columnheader">Season Total</span>
+          <span role="columnheader">Month-to-Month</span>
+        </div>
+        {rates.map((r, i) => (
+          <div class:list={['rate-row', { 'rate-row--alt': i % 2 !== 0 }]} role="row">
+            <span role="cell" class="rate-ft">{r.ft} ft</span>
+            <span role="cell">${r.monthly.toFixed(2)}</span>
+            <span role="cell" class="rate-season">${r.season.toFixed(2)}</span>
+            <span role="cell">${r.monthToMonth.toFixed(2)}</span>
+          </div>
+        ))}
+      </div>
+
+      <div class="fee-cards">
+        {[
+          { label: 'Electric — 24ft & under', val: '$50.00 / season' },
+          { label: 'Electric — 25ft & up',    val: '$80.00 / season' },
+          { label: 'Cradle / Trailer / Jack Stand Storage', val: '$75.00 / season' },
+          { label: 'Day / Overnight Use',     val: '$25.00 flat / boat' },
+          { label: 'Trailer Parking (day)',   val: '$7.50 / day' },
+          { label: 'Dry Storage',             val: '$99.00 / mo · $1,188 / season' },
+        ].map(f => (
+          <div class="fee-card">
+            <span class="fee-label">{f.label}</span>
+            <span class="fee-val">{f.val}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Labor Services -->
+    <section class="section alt-section" id="labor">
+      <div class="container">
+        <p class="section-tag">Full-Service Yard</p>
+        <h2>Marine Services</h2>
+        <p class="sub-intro">Labor rate: <strong style="color:var(--gold)">$125.00 / hour</strong>. Schedule a week in advance for lift appointments.</p>
+
+        <div class="labor-grid">
+          {[
+            { title: 'Lift-In / Lift-Out', detail: '$200 per ride (first 2 hrs)', note: 'Arrive 30 minutes early. 1-week advance booking required.' },
+            { title: 'Bottom Paint',       detail: '$30 per foot + materials',    note: 'Includes light sanding, wash, and labor. Epoxy barrier coat estimates case-by-case.' },
+            { title: 'Power Wash — Bottom', detail: '$75.00',                    note: 'Scheduled alongside other yard work.' },
+            { title: 'Mast Set / Lower',   detail: '$125/hr labor',              note: 'Includes rigging check and consultation.' },
+            { title: 'Hull Cleaning & Polishing', detail: '$125/hr labor',       note: 'Interior cleaning also available.' },
+            { title: 'Blister / Hull Repair', detail: 'Estimate required',       note: 'Bottom repair, barrier coats — case-by-case pricing.' },
+            { title: 'Paint (Topsides)',   detail: '$125/hr labor + materials',  note: '' },
+            { title: 'Cradle / Trailer Repair', detail: '$125/hr labor',         note: '' },
+          ].map(s => (
+            <div class="labor-card">
+              <h3>{s.title}</h3>
+              <span class="labor-detail">{s.detail}</span>
+              {s.note && <p class="labor-note">{s.note}</p>}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-hero { padding: 60px 0 48px; }
+  .page-hero h1 {
+    font-family: var(--font-serif); font-weight: 700;
+    font-size: clamp(40px, 6vw, 80px); line-height: 0.95; margin-bottom: 16px;
+  }
+  .page-hero-sub { font-size: 15px; font-weight: 400; color: rgba(221,213,196,0.82); max-width: 480px; line-height: 1.8; }
+
+  .section { padding: var(--section-pad) 0; }
+  .alt-section { background: var(--navy-mid); border-top: 1px solid var(--gold-dim); }
+  .section-header { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; margin-bottom: 28px; }
+  .section-header h2 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(24px, 3vw, 42px); }
+  h2 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(24px, 3vw, 42px); margin-bottom: 16px; }
+  .sub-intro { font-size: 15px; font-weight: 400; color: rgba(221,213,196,0.82); margin-bottom: 40px; }
+
+  .rate-note {
+    font-size: 12px; font-weight: 300; color: rgba(221,213,196,0.4);
+    margin-bottom: 24px; line-height: 1.8; max-width: 640px;
+  }
+
+  .rate-table { border: 1px solid var(--gold-dim); margin-bottom: 32px; }
+  .rate-row {
+    display: grid; grid-template-columns: 1fr 1.2fr 1.2fr 1.2fr;
+    padding: 12px 20px; border-bottom: 1px solid rgba(196,154,42,0.07);
+    font-size: 13px; font-weight: 300; color: rgba(221,213,196,0.7);
+    transition: background .2s;
+  }
+  .rate-row:hover { background: var(--gold-glow); }
+  .rate-row--head {
+    font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold);
+    font-weight: 500; font-family: var(--font-sans); background: rgba(196,154,42,0.07);
+  }
+  .rate-row--alt { background: rgba(255,255,255,0.01); }
+  .rate-ft { font-family: var(--font-serif); font-weight: 600; font-size: 17px; color: var(--cream); }
+  .rate-season { color: var(--gold); }
+
+  .fee-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .fee-card {
+    border: 1px solid var(--gold-dim); padding: 18px 20px;
+    display: flex; flex-direction: column; gap: 6px;
+    transition: border-color .25s, background .25s;
+  }
+  .fee-card:hover { border-color: var(--gold); background: var(--gold-glow); }
+  .fee-label { font-size: 11px; font-weight: 300; color: rgba(221,213,196,0.5); }
+  .fee-val   { font-family: var(--font-serif); font-weight: 600; font-size: 19px; color: var(--gold); }
+
+  .labor-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--gold-glow); }
+  .labor-card {
+    padding: 28px 22px; background: var(--navy-mid);
+    border: 1px solid var(--gold-dim);
+    transition: background .3s, border-color .3s;
+  }
+  .labor-card:hover { background: var(--gold-glow); border-color: rgba(196,154,42,0.35); }
+  .labor-card h3 { font-family: var(--font-serif); font-weight: 600; font-size: 19px; margin-bottom: 8px; }
+  .labor-detail { font-size: 12px; color: var(--gold); font-weight: 400; display: block; margin-bottom: 8px; }
+  .labor-note   { font-size: 11px; font-weight: 300; color: rgba(221,213,196,0.4); line-height: 1.7; }
+
+  @media (max-width: 900px) {
+    .fee-cards { grid-template-columns: 1fr 1fr; }
+    .labor-grid { grid-template-columns: 1fr 1fr; }
+    .rate-row { grid-template-columns: 1fr 1fr; }
+    .rate-row > span:nth-child(3),
+    .rate-row > span:nth-child(4) { display: none; }
+    .rate-row--head span:nth-child(2) { content: 'Monthly'; }
+  }
+  @media (max-width: 540px) {
+    .fee-cards, .labor-grid { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,39 @@
+{
+  "officers": [
+    {
+      "role": "Commodore",
+      "name": "Mark Swinburne",
+      "email": "",
+      "photo": "",
+      "bio": ""
+    },
+    {
+      "role": "Vice-Commodore",
+      "name": "Phil Stephenson",
+      "email": "",
+      "photo": "",
+      "bio": ""
+    },
+    {
+      "role": "Secretary/Treasurer",
+      "name": "Pam McBride",
+      "email": "",
+      "photo": "",
+      "bio": "Mail membership forms to: Boulder Yacht Club, C/O Pam McBride, 1880 Ridgeway Dr, Arnold, MO 63010"
+    },
+    {
+      "role": "Race Chair",
+      "name": "Kirk Hulse",
+      "email": "",
+      "photo": "",
+      "bio": ""
+    },
+    {
+      "role": "Social Chair",
+      "name": "Mike Shelton",
+      "email": "",
+      "photo": "",
+      "bio": ""
+    }
+  ]
+}

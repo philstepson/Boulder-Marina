@@ -1,0 +1,336 @@
+---
+// src/pages/boulder-yacht-club.astro
+// This page is the cross-promo hub between Boulder Marina and BYC.
+// Content managed via TinaCMS — no HTML knowledge required.
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav        from '../components/Nav.astro';
+import Footer     from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Boulder Yacht Club — Est. 1983 | Carlyle Lake's Eastern Shore"
+  description="Boulder Yacht Club is a 501(c)(7) nonprofit sailing organization on the eastern shore of Carlyle Lake, Illinois. Racing, social events, Sea Scouts, and a community that feels like family. Call Boulder Marina home port."
+>
+  <Nav />
+
+  <main style="padding-top: 100px;">
+
+    <!-- Hero -->
+    <section class="byc-hero container">
+      <p class="section-tag">Est. 1983 · 501(c)(7) Nonprofit</p>
+      <h1>Boulder Yacht Club</h1>
+      <p class="byc-hero-sub">
+        The only yacht club on the eastern shore of Carlyle Lake. We're not yuppies and we're not yachters — we're
+        real people who love time on the water. Sailors, racers, paddlers, newcomers, and old salts alike.
+      </p>
+      <div class="byc-hero-ctas">
+        <a href="#membership" class="btn btn--fill">Join BYC</a>
+        <a href="#racing"     class="btn">Racing Program</a>
+        <a href="#events"     class="btn">Social Events</a>
+      </div>
+    </section>
+
+    <!-- Identity strip -->
+    <section class="identity-strip" aria-label="BYC key facts">
+      <div class="container identity-grid">
+        {[
+          { val: '1983',   label: 'Founded' },
+          { val: 'Only',   label: 'Club on the Eastern Shore' },
+          { val: '8',      label: 'Club Races per Season' },
+          { val: '501c7',  label: 'Nonprofit Status' },
+        ].map(s => (
+          <div class="identity-stat">
+            <span class="identity-val">{s.val}</span>
+            <span class="identity-label">{s.label}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Who We Are -->
+    <section class="section container byc-about" aria-labelledby="byc-about-heading">
+      <div class="byc-about-grid">
+        <div>
+          <p class="section-tag">Who We Are</p>
+          <h2 id="byc-about-heading">A tight-knit crew on the best lake in southern Illinois.</h2>
+          <p>
+            Boulder Yacht Club is a sailing organization whose members call Boulder Marina their home port.
+            Despite differences in age, background, or boat preference, many of us grow to think of each other
+            as a second family. We're united by a shared passion for time on the water and a commitment to
+            promoting safe boating practices.
+          </p>
+          <p>
+            We give back through our Annual Charity Dinner, raising funds for local organizations including
+            Backstoppers, Hannah's Playground, Got Your Six, and Miracles in Progress.
+          </p>
+          <p>
+            BYC is also home to <strong>Sea Scout Ship 9</strong> — engaging young people in nautical activities,
+            seamanship skills, leadership, and community service.
+          </p>
+        </div>
+        <div class="board-panel" id="board" aria-labelledby="board-heading">
+          <p class="section-tag">2026 Officers</p>
+          <h3 id="board-heading">Meet the Board</h3>
+          <dl class="board-dl">
+            {[
+              { role: 'Commodore',           name: 'Mark Swinburne' },
+              { role: 'Vice-Commodore',      name: 'Phil Stephenson' },
+              { role: 'Secretary/Treasurer', name: 'Pam McBride' },
+              { role: 'Race Chair',          name: 'Kirk Hulse' },
+              { role: 'Social Chair',        name: 'Mike Shelton' },
+            ].map(o => (
+              <>
+                <dt>{o.role}</dt>
+                <dd>{o.name}</dd>
+              </>
+            ))}
+          </dl>
+          <p class="board-contact">
+            Contact: <a href="mailto:bouldermarina@gmail.com">bouldermarina@gmail.com</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Racing -->
+    <section class="section alt-section" id="racing" aria-labelledby="racing-heading">
+      <div class="container">
+        <p class="section-tag">On the Water</p>
+        <h2 id="racing-heading">Racing Program</h2>
+        <div class="racing-grid">
+          <div>
+            <p>
+              BYC enjoys a uniquely casual approach to sailboat racing. We race to practice and sharpen handling
+              and navigational skills, but also to enjoy time with friends new and old. For those who associate
+              racing with yelling skippers, BYC Racing offers a refreshing change of pace.
+            </p>
+            <p>
+              We hold 8 club races per season, including three lake-wide regattas open to all sailors and clubs
+              across Carlyle Lake. The club plans social events following most races — the fun doesn't stop at
+              the finish line.
+            </p>
+            <p>
+              Everyone is welcome: crew on another boat, race your own, set marks, or assist the race committee.
+              Green and salty sailors alike.
+            </p>
+            <a href="https://boulderyc.org/events/category/race/" target="_blank" rel="noopener" class="btn" style="margin-top:20px">
+              View Racing Calendar →
+            </a>
+          </div>
+          <div>
+            <p class="section-tag">Signature Regattas</p>
+            <ul class="regatta-list" role="list">
+              {[
+                { name: 'Moonlight Regatta',  note: 'Lake-wide · open to all clubs' },
+                { name: 'Renshaw Regatta',    note: 'Lake-wide · open to all clubs' },
+                { name: "Commodore's Cup",    note: 'Lake-wide · open to all clubs' },
+                { name: 'Club Race Series',   note: '5 additional club races' },
+              ].map(r => (
+                <li class="regatta-item">
+                  <span class="regatta-name">{r.name}</span>
+                  <span class="regatta-note">{r.note}</span>
+                </li>
+              ))}
+            </ul>
+            <p class="race-note">
+              Participants from other clubs must give advance notice so we can plan accordingly.
+              See the BYC Facebook page for race-specific info.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Social Events -->
+    <section class="section container" id="events" aria-labelledby="events-heading">
+      <p class="section-tag">The Social Season</p>
+      <h2 id="events-heading">BYC Signature Events</h2>
+      <div class="events-grid">
+        {[
+          { name: 'Tapas on the Docks',      desc: 'A floating feast of small plates, cold drinks, and great company out on the dock.' },
+          { name: 'Pirate Party',            desc: 'A high-seas adventure on Carlyle Lake. Costumes strongly encouraged. Prizes available.' },
+          { name: "Spero's Spaghetti Dinner", desc: 'A BYC tradition — great food and camaraderie with a menu that doesn\'t disappoint.' },
+          { name: 'Seafood Charity Dinner',  desc: 'Great food, great cause. Proceeds benefit local charities selected by the board.' },
+          { name: 'Survivor Party',          desc: 'A celebration of resilience, fun, and friendly competition among BYC members.' },
+          { name: 'Chili Cookoff',           desc: 'Where the best recipes and fiercest rivalries collide. Judged by the membership.' },
+          { name: 'Canoe Race',              desc: 'Not just a sailing club — the annual canoe race proves anyone can compete.' },
+          { name: 'Annual Charity Dinner',   desc: 'The flagship fundraiser. All proceeds go to Backstoppers, Hannah\'s Playground, and more.' },
+        ].map(e => (
+          <article class="event-card">
+            <h3>{e.name}</h3>
+            <p>{e.desc}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- Membership -->
+    <section class="section membership-section" id="membership" aria-labelledby="membership-heading">
+      <div class="container membership-grid">
+        <div>
+          <p class="section-tag">Join the Club</p>
+          <h2 id="membership-heading">Membership</h2>
+          <p>
+            BYC membership is open to all boaters — sailors, racers, cruisers, kayakers, paddleboarders,
+            and pontoon captains. You don't need to own a boat to join; crewing is a great way to start.
+          </p>
+          <p>
+            Members gain access to all club events, the racing program, social calendar, and a community that
+            will help you become a better sailor — or at least a better partier.
+          </p>
+          <div class="membership-ctas">
+            <a href="https://drive.google.com/file/d/1laWI_N65OrrBUUSPhYiyx2RLFmU7TTbV/view" target="_blank" rel="noopener" class="btn btn--fill">
+              Download Membership Form
+            </a>
+            <a href="/contact" class="btn">Contact BYC</a>
+          </div>
+          <p class="membership-mail">
+            Mail completed forms to:<br />
+            <strong>Boulder Yacht Club · C/O Pam McBride · 1880 Ridgeway Dr · Arnold, MO 63010</strong>
+          </p>
+        </div>
+        <div class="membership-why">
+          <p class="section-tag">Why Join?</p>
+          <ul class="why-list" role="list">
+            {[
+              'Sailing lessons and mentorship from experienced members',
+              'Access to 8 club races per season + 3 lake-wide regattas',
+              'Exclusive social events updated every year',
+              'Sea Scout Ship 9 for young sailors',
+              'Community cookouts, paddleboarding, swimming, fishing',
+              'A second family that shares your love for the lake',
+              'Support for local charities through Annual Charity Dinner',
+              'Cross-promotion and partnership with Boulder Marina',
+            ].map(w => (
+              <li class="why-item">
+                <span class="why-bullet" aria-hidden="true">✦</span>
+                <span>{w}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marina link-back -->
+    <section class="marina-linkback" aria-label="Boulder Marina connection">
+      <div class="container linkback-inner">
+        <div>
+          <p class="section-tag">Home Port</p>
+          <h2>BYC members dock at Boulder Marina.</h2>
+          <p>
+            As a BYC member, you have access to Boulder Marina's full-service yard, floating concrete docks,
+            heated clubhouse, covered pavilion, ship's store, and all marina amenities.
+            Slip rates start at $139.50/mo.
+          </p>
+        </div>
+        <div class="linkback-ctas">
+          <a href="/services" class="btn btn--fill">Marina Rates</a>
+          <a href="/contact#slip-reservation" class="btn">Reserve a Slip</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .byc-hero { padding: 60px 0 56px; }
+  .byc-hero h1 {
+    font-family: var(--font-serif); font-weight: 700;
+    font-size: clamp(56px, 8vw, 110px); line-height: 0.92; margin-bottom: 24px; color: #ffffff;
+  }
+  .byc-hero-sub { font-size: 15px; font-weight: 400; color: rgba(221,213,196,0.82); max-width: 540px; line-height: 1.85; margin-bottom: 36px; }
+  .byc-hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .identity-strip {
+    background: var(--navy-mid); border-top: 1px solid var(--gold-dim); border-bottom: 1px solid var(--gold-dim);
+    padding: 48px 0;
+  }
+  .identity-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .identity-stat { text-align: center; }
+  .identity-val {
+    display: block; font-family: var(--font-serif); font-weight: 900;
+    font-size: clamp(30px, 5vw, 52px); color: var(--gold); line-height: 1;
+  }
+  .identity-label { display: block; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: rgba(221,213,196,0.4); margin-top: 8px; }
+
+  .section { padding: var(--section-pad) 0; }
+  .alt-section { background: var(--navy-mid); border-top: 1px solid var(--gold-dim); }
+
+  .byc-about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .byc-about-grid h2 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(24px, 3vw, 42px); margin-bottom: 20px; }
+  .byc-about-grid p { font-size: 15px; font-weight: 400; line-height: 1.85; color: rgba(221,213,196,0.82); margin-bottom: 14px; }
+  .byc-about-grid strong { color: var(--cream); }
+
+  .board-panel {
+    background: var(--gold-glow); border: 1px solid var(--gold-dim); padding: 36px;
+  }
+  .board-panel h3 { font-family: var(--font-serif); font-weight: 600; font-size: 26px; margin-bottom: 20px; }
+  .board-dl { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; margin-bottom: 20px; font-size: 13px; }
+  .board-dl dt { color: rgba(221,213,196,0.4); font-weight: 300; }
+  .board-dl dd { color: var(--cream); font-weight: 400; }
+  .board-contact { font-size: 11px; font-weight: 300; color: rgba(221,213,196,0.35); }
+  .board-contact a { color: var(--gold); text-decoration: none; }
+
+  .racing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+  .racing-grid p { font-size: 15px; font-weight: 400; line-height: 1.85; color: rgba(221,213,196,0.82); margin-bottom: 14px; }
+
+  .regatta-list { list-style: none; }
+  .regatta-item {
+    padding: 14px 0; border-bottom: 1px solid rgba(196,154,42,0.1);
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .regatta-name { font-family: var(--font-serif); font-weight: 600; font-size: 20px; }
+  .regatta-note { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(221,213,196,0.35); }
+  .race-note { font-size: 11px; font-weight: 300; color: rgba(221,213,196,0.3); margin-top: 16px; line-height: 1.7; }
+
+  .events-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--gold-glow); margin-top: 40px; }
+  .event-card {
+    padding: 28px 22px; background: var(--navy);
+    border: 1px solid var(--gold-dim); transition: background .3s, border-color .3s;
+  }
+  .event-card:hover { background: var(--gold-glow); border-color: rgba(196,154,42,0.35); }
+  .event-card h3 { font-family: var(--font-serif); font-weight: 600; font-size: 19px; margin-bottom: 10px; }
+  .event-card p { font-size: 14px; font-weight: 400; line-height: 1.8; color: rgba(221,213,196,0.78); }
+
+  .membership-section { background: var(--navy-mid); border-top: 1px solid var(--gold-dim); }
+  .membership-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .membership-grid h2 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(24px, 3vw, 42px); margin-bottom: 20px; }
+  .membership-grid p { font-size: 15px; font-weight: 400; line-height: 1.85; color: rgba(221,213,196,0.82); margin-bottom: 14px; }
+  .membership-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin: 24px 0; }
+  .membership-mail { font-size: 11px; font-weight: 300; color: rgba(221,213,196,0.3); line-height: 1.8; }
+  .membership-mail strong { color: rgba(221,213,196,0.5); }
+
+  .why-list { list-style: none; }
+  .why-item {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 12px 0; border-bottom: 1px solid rgba(196,154,42,0.08);
+    font-size: 13px; font-weight: 300; color: rgba(221,213,196,0.65); line-height: 1.6;
+  }
+  .why-bullet { color: var(--gold); font-size: 9px; flex-shrink: 0; margin-top: 4px; }
+
+  .marina-linkback {
+    background: linear-gradient(135deg, var(--navy-light), var(--navy-mid));
+    border-top: 1px solid var(--gold-dim); padding: 80px 0;
+  }
+  .linkback-inner {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 36px; max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter);
+  }
+  .linkback-inner h2 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(22px, 2.8vw, 40px); margin-bottom: 12px; }
+  .linkback-inner p { font-size: 15px; font-weight: 400; color: rgba(221,213,196,0.78); max-width: 480px; line-height: 1.8; }
+  .linkback-ctas { display: flex; gap: 14px; flex-wrap: wrap; flex-shrink: 0; }
+
+  @media (max-width: 960px) {
+    .identity-grid { grid-template-columns: repeat(2, 1fr); }
+    .byc-about-grid, .racing-grid, .membership-grid { grid-template-columns: 1fr; gap: 40px; }
+    .events-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 540px) {
+    .events-grid { grid-template-columns: 1fr; }
+  }
+</style>

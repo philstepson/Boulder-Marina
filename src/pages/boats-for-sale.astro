@@ -1,0 +1,320 @@
+---
+// src/pages/boats-for-sale.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav        from '../components/Nav.astro';
+import Footer     from '../components/Footer.astro';
+
+const resources = [
+  {
+    heading: 'At the Marina',
+    links: [
+      { label: 'Sailboat Listings — Carlyle Lake, IL',  href: 'https://www.sailboatlistings.com/' },
+      { label: 'West Access Marina Boats for Sale',     href: 'https://dwphome.com/index.php/yachts' },
+    ],
+  },
+  {
+    heading: 'South — Memphis Area',
+    links: [
+      { label: 'Rooke Sails',                          href: 'https://www.rookesails.com/' },
+      { label: 'Rooke Sails — YachtWorld Listings',    href: 'https://www.yachtworld.com/boats-for-sale/broker-rooke-sails-inc-27192/' },
+    ],
+  },
+  {
+    heading: 'North — Chicago Area',
+    links: [
+      { label: 'Sailboat Sales Co.',                   href: 'http://www.sailboatsalesco.com/brokcruise.htm' },
+      { label: 'YachtWorld — 300mi of St. Louis',      href: 'https://www.yachtworld.com/boats-for-sale/type-sail/radius-300/' },
+    ],
+  },
+  {
+    heading: 'Boat Research',
+    links: [
+      { label: 'SailboatData.com — specs & reviews',   href: 'https://sailboatdata.com/' },
+      { label: 'OceanWave Sail',                       href: 'https://oceanwavesail.com/' },
+      { label: 'Glossary of Boating Terms',            href: 'https://marinesource.com/a-glossary-of-boating-terminology' },
+    ],
+  },
+  {
+    heading: 'Boat Transport',
+    links: [
+      { label: 'Sailors Moving Sailors',               href: 'https://sailorsmovingsailors.com/' },
+      { label: 'Illinois Boat Transport',              href: 'https://boattransportpros.com/illinois-boat-transport/' },
+      { label: 'Missouri Boat Transport',              href: 'https://boattransportpros.com/missouri-boat-transport/' },
+      { label: 'Brooks Yacht Transport — Great Lakes', href: 'https://www.brooksyachttransport.com/yacht-transport-great-lakes/' },
+      { label: 'BoatMovers.com',                       href: 'https://www.boatmovers.com/illinois-boat-transport.html' },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Boats for Sale — Boulder Marina | Carlyle Lake, IL"
+  description="Find sailboats and powerboats for sale at Boulder Marina on Carlyle Lake, Illinois. Listings from marina members plus links to regional brokers and marketplaces."
+>
+  <Nav />
+
+  <main>
+
+    <!-- ── MASTHEAD ── -->
+    <div class="boats-masthead">
+      <img
+        src="/uploads/boats-for-sale.jpg"
+        alt="Sailboat on the water"
+        width="630" height="430"
+        loading="eager"
+        fetchpriority="high"
+        class="boats-masthead-img"
+      />
+      <div class="boats-masthead-overlay" aria-hidden="true"></div>
+      <div class="boats-masthead-content container">
+        <p class="section-tag">Boulder Marina</p>
+        <h1>Boats for Sale</h1>
+        <p class="masthead-sub">Member listings and regional resources for buying and selling on Carlyle Lake.</p>
+      </div>
+    </div>
+
+    <!-- ── INTRO + DISCLAIMER ── -->
+    <section class="section intro-section">
+      <div class="container intro-grid">
+        <div class="intro-text">
+          <p class="section-tag">Member Listings</p>
+          <h2>Your next boat may already be here.</h2>
+          <p>
+            Boulder Marina members occasionally sell their boats right here at the dock.
+            Check back frequently — the boat market changes quickly. We'll post member
+            listings here as they become available.
+          </p>
+          <p>
+            Don't see what you're looking for? Scroll down for our curated list of
+            regional brokers, online marketplaces, and transport services to help you
+            find your next vessel.
+          </p>
+          <a href="/contact" class="btn" style="margin-top: 8px; display: inline-block;">List Your Boat</a>
+        </div>
+
+        <div class="disclaimer-card">
+          <p class="section-tag">Important Notice</p>
+          <p>
+            Boulder Marina is not a boat brokerage and does not offer brokerage services.
+            We simply facilitate viewing and sharing of information provided by the current owner.
+          </p>
+          <p>
+            All discussions, negotiations, and financing are solely between the current owner
+            and prospective buyer. Boulder Marina is not a responsible party in the discussion,
+            sale, or purchase of any vessel or item on the grounds.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── NO CURRENT LISTINGS ── -->
+    <section class="no-listings-section">
+      <div class="container no-listings-inner">
+        <div class="no-listings-icon" aria-hidden="true">⚓</div>
+        <h3>No listings at this time.</h3>
+        <p>We'll post boats here as they come available. Check back or contact the marina to ask about current inventory.</p>
+        <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 24px;">
+          <a href="/contact" class="btn btn--fill">Contact the Marina</a>
+          <a href="tel:+16182263223" class="btn">(618) 226-3223</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── RESOURCE LINKS ── -->
+    <section class="section resources-section">
+      <div class="container">
+        <p class="section-tag">Find Your Boat</p>
+        <h2>Regional brokers & marketplaces.</h2>
+        <p class="resources-intro">
+          A curated directory of trusted resources for buying boats in the Carlyle Lake region
+          and beyond — compiled by Boulder Yacht Club for the Carlyle Lake sailing community.
+        </p>
+
+        <div class="resources-grid">
+          {resources.map(group => (
+            <div class="resource-group">
+              <h3 class="resource-heading">{group.heading}</h3>
+              <ul class="resource-list">
+                {group.links.map(link => (
+                  <li>
+                    <a href={link.href} target="_blank" rel="noopener noreferrer" class="resource-link">
+                      {link.label}
+                      <span class="resource-arrow" aria-hidden="true">↗</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA ── -->
+    <section class="cta-banner">
+      <div class="container cta-inner">
+        <div>
+          <p class="section-tag">Have a Boat to Sell?</p>
+          <h2>List it at the marina.</h2>
+          <p>
+            If you have a boat for sale at Boulder Marina, contact us and we'll add your
+            listing here at no charge. Reach motivated buyers right here at the dock.
+          </p>
+        </div>
+        <div class="cta-buttons">
+          <a href="/contact" class="btn btn--fill">Submit a Listing</a>
+          <a href="/services" class="btn">View Marina Services</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  /* ── MASTHEAD ── */
+  .boats-masthead { position: relative; width: 100%; line-height: 0; }
+  .boats-masthead-img {
+    width: 100%; height: auto; display: block;
+    filter: brightness(0.9) saturate(0.85);
+    max-height: 480px; object-fit: cover;
+  }
+  .boats-masthead-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(6,9,15,0.45) 0%, rgba(6,9,15,0.15) 40%, rgba(6,9,15,0.72) 100%);
+  }
+  .boats-masthead-content {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: clamp(16px, 4%, 36px);
+    z-index: 10;
+  }
+  .boats-masthead-content h1 {
+    font-family: var(--font-serif); font-weight: 700;
+    font-size: clamp(36px, 5.5vw, 72px);
+    color: #ffffff; line-height: 1.05; margin-top: 8px;
+  }
+  .masthead-sub {
+    font-size: 14px; font-weight: 400; color: rgba(221,213,196,0.78);
+    margin-top: 6px; max-width: 480px;
+  }
+
+  /* ── INTRO ── */
+  .section { padding: var(--section-pad) 0; }
+  .intro-section { background: var(--navy); border-bottom: 1px solid var(--gold-dim); }
+  .intro-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 64px; align-items: start;
+  }
+  .intro-text h2 {
+    font-family: var(--font-serif); font-weight: 600;
+    font-size: clamp(24px, 3vw, 40px); line-height: 1.15; margin-bottom: 20px;
+  }
+  .intro-text p {
+    font-size: 15px; font-weight: 400; line-height: 1.85;
+    color: rgba(221,213,196,0.82); margin-bottom: 16px;
+  }
+  .disclaimer-card {
+    background: var(--navy-mid);
+    border: 1px solid var(--gold-dim);
+    border-left: 3px solid var(--gold);
+    padding: 32px;
+  }
+  .disclaimer-card p {
+    font-size: 13px; font-weight: 400; line-height: 1.85;
+    color: rgba(221,213,196,0.65); margin-bottom: 14px;
+  }
+  .disclaimer-card p:last-child { margin-bottom: 0; }
+
+  /* ── NO LISTINGS ── */
+  .no-listings-section {
+    background: var(--navy-mid);
+    border-top: 1px solid var(--gold-dim);
+    border-bottom: 1px solid var(--gold-dim);
+    padding: 72px 0;
+  }
+  .no-listings-inner {
+    text-align: center; max-width: 560px; margin: 0 auto;
+  }
+  .no-listings-icon {
+    font-size: 40px; margin-bottom: 20px; opacity: 0.4;
+  }
+  .no-listings-inner h3 {
+    font-family: var(--font-serif); font-weight: 600;
+    font-size: clamp(22px, 2.5vw, 32px); margin-bottom: 14px;
+  }
+  .no-listings-inner p {
+    font-size: 15px; font-weight: 400; line-height: 1.8;
+    color: rgba(221,213,196,0.65);
+  }
+
+  /* ── RESOURCES ── */
+  .resources-section {
+    background: var(--navy);
+  }
+  .resources-section h2 {
+    font-family: var(--font-serif); font-weight: 600;
+    font-size: clamp(24px, 3vw, 40px); line-height: 1.15; margin-bottom: 16px;
+  }
+  .resources-intro {
+    font-size: 16px; font-weight: 400; color: rgba(221,213,196,0.88);
+    max-width: 600px; line-height: 1.8; margin-bottom: 48px;
+  }
+  .resources-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: var(--gold-glow);
+  }
+  .resource-group {
+    background: var(--navy);
+    border: 1px solid var(--gold-dim);
+    padding: 28px 28px 32px;
+  }
+  .resource-heading {
+    font-family: var(--font-sans); font-weight: 600;
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 20px;
+  }
+  .resource-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+  .resource-link {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 15px; font-weight: 400;
+    color: rgba(221,213,196,0.88); text-decoration: none;
+    padding: 11px 0; border-bottom: 1px solid rgba(196,154,42,0.1);
+    transition: color .2s, padding-left .2s;
+    gap: 8px;
+  }
+  .resource-link:hover { color: var(--gold); padding-left: 6px; }
+  .resource-arrow { font-size: 13px; color: var(--gold); opacity: 0.7; flex-shrink: 0; }
+
+  /* ── CTA ── */
+  .cta-banner {
+    background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy-mid) 100%);
+    border-top: 1px solid var(--gold-dim);
+    padding: 80px 0;
+  }
+  .cta-inner {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 36px;
+  }
+  .cta-inner h2 {
+    font-family: var(--font-serif); font-weight: 600;
+    font-size: clamp(24px, 3vw, 40px); margin-bottom: 12px;
+  }
+  .cta-inner p {
+    font-size: 15px; font-weight: 400; color: rgba(221,213,196,0.78);
+    max-width: 480px; line-height: 1.8;
+  }
+  .cta-buttons { display: flex; gap: 16px; flex-wrap: wrap; flex-shrink: 0; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    .intro-grid { grid-template-columns: 1fr; gap: 40px; }
+    .resources-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .resources-grid { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,395 @@
+---
+// src/components/Nav.astro
+// Sticky nav: transparent over hero, solid after scroll.
+// Active page highlighted automatically.
+
+const navLinks = [
+  { href: '/',              label: 'Home' },
+  { href: '/about',         label: 'About' },
+  { href: '/services',      label: 'Services' },
+  { href: '/events',        label: 'Events' },
+  { href: '/boulder-yacht-club', label: 'Yacht Club' },
+  { href: '/gallery',       label: 'Gallery' },
+  { href: '/boats-for-sale',label: 'Boats' },
+  { href: '/contact',       label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav id="nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <!-- Logo -->
+    <a href="/" class="nav-brand" aria-label="Boulder Marina home">
+      <img
+        src="/uploads/boulder-marina-logo.png"
+        alt="Boulder Marina logo"
+        width="38" height="38"
+        loading="eager"
+      />
+      <div class="nav-brand-text">
+        <span class="nav-brand-name">Boulder Marina</span>
+        <span class="nav-brand-sub">Life Unanchored · Carlyle Lake</span>
+      </div>
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="nav-links" role="list">
+      {navLinks.map(link => (
+        <li>
+          <a
+            href={link.href}
+            class:list={['nav-link', { 'nav-link--active': currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href)) }]}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- CTA -->
+    <button id="reserve-btn" class="btn btn--fill nav-cta">Reserve a Slip</button>
+
+    <!-- Hamburger (mobile) -->
+    <button id="nav-toggle" class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Mobile drawer -->
+  <div id="nav-drawer" class="nav-drawer" aria-hidden="true">
+    <ul role="list">
+      {navLinks.map(link => (
+        <li><a href={link.href} class="nav-drawer-link">{link.label}</a></li>
+      ))}
+      <li><button id="reserve-btn-mobile" class="btn btn--fill" style="margin-top: 12px; display:inline-block;">Reserve a Slip</button></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── SLIP RESERVATION MODAL ── -->
+<div id="reserve-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+  <div class="modal-backdrop"></div>
+  <div class="modal-card">
+    <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+    <p class="section-tag">Boulder Marina</p>
+    <h2 id="modal-title">Reserve a Slip</h2>
+    <p class="modal-intro">Fill out the form below and we'll confirm availability within 24 hours.</p>
+
+    <form
+      action="https://formspree.io/f/bouldermarina"
+      method="POST"
+      class="modal-form"
+      novalidate
+    >
+      <div class="mform-row">
+        <div class="mform-group">
+          <label for="r-name">Your Name <span>*</span></label>
+          <input type="text" id="r-name" name="name" required autocomplete="name" />
+        </div>
+        <div class="mform-group">
+          <label for="r-phone">Phone Number <span>*</span></label>
+          <input type="tel" id="r-phone" name="phone" required autocomplete="tel" />
+        </div>
+      </div>
+
+      <div class="mform-group">
+        <label for="r-boat">Boat Name <span>*</span></label>
+        <input type="text" id="r-boat" name="boat_name" required placeholder="e.g. Sea Wanderer" />
+      </div>
+
+      <div class="mform-row">
+        <div class="mform-group">
+          <label for="r-reg">Boat Registration #</label>
+          <input type="text" id="r-reg" name="registration" placeholder="IL-XXXX-XX" />
+        </div>
+        <div class="mform-group">
+          <label for="r-length">Vessel Length (ft) <span>*</span></label>
+          <input type="number" id="r-length" name="boat_length" min="18" max="37" required />
+        </div>
+      </div>
+
+      <div class="mform-row">
+        <div class="mform-group">
+          <label for="r-arrive">Arrival Date <span>*</span></label>
+          <input type="date" id="r-arrive" name="arrival_date" required />
+        </div>
+        <div class="mform-group">
+          <label for="r-depart">Departure Date</label>
+          <input type="date" id="r-depart" name="departure_date" />
+        </div>
+      </div>
+
+      <div class="mform-group">
+        <label for="r-time">Estimated Arrival Time</label>
+        <input type="time" id="r-time" name="arrival_time" />
+      </div>
+
+      <div class="mform-group">
+        <label for="r-notes">Additional Notes</label>
+        <textarea id="r-notes" name="notes" rows="3" placeholder="Slip type preference, special requirements…"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn--fill modal-submit">Send Reservation Request</button>
+      <p class="modal-disclaimer">We'll follow up within 24 hours. See our <a href="/services">rate sheet</a> for pricing.</p>
+    </form>
+  </div>
+</div>
+
+<style>
+  nav {
+    position:   fixed;
+    top: 0; left: 0; right: 0;
+    z-index:    200;
+    padding:    14px var(--gutter);
+    transition: background 0.4s var(--ease), border-color 0.4s var(--ease), backdrop-filter 0.4s;
+    border-bottom: 1px solid transparent;
+  }
+  nav.scrolled {
+    background:    rgba(6, 9, 15, 0.96);
+    backdrop-filter: blur(14px);
+    border-color:  var(--gold-dim);
+  }
+
+  .nav-inner {
+    max-width: var(--container);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .nav-brand img { border-radius: 2px; }
+  .nav-brand-name {
+    display: block;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 22px;
+    color: #ffffff;
+    line-height: 1;
+  }
+  .nav-brand-sub {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 4px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 18px;
+    list-style: none;
+    margin-left: auto;
+    flex-wrap: nowrap;
+  }
+  .nav-link {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(221,213,196,0.88);
+    text-decoration: none;
+    padding-bottom: 3px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.25s, border-color 0.25s;
+    white-space: nowrap;
+  }
+  .nav-link:hover,
+  .nav-link--active { color: var(--gold); border-color: rgba(196,154,42,0.5); }
+
+  .nav-cta { margin-left: 8px; padding: 9px 18px; font-size: 10px; flex-shrink: 0; }
+
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    margin-left: auto;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--cream);
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .nav-drawer {
+    display: none;
+    padding: 24px var(--gutter) 32px;
+    background: rgba(6,9,15,0.98);
+  }
+  .nav-drawer ul { list-style: none; }
+  .nav-drawer-link {
+    display: block;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 15px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(221,213,196,0.88);
+    text-decoration: none;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--gold-dim);
+    transition: color 0.25s;
+  }
+  .nav-drawer-link:hover { color: var(--gold); }
+
+  @media (max-width: 960px) {
+    .nav-links, .nav-cta { display: none; }
+    .nav-hamburger { display: flex; }
+    .nav-drawer.open { display: block; }
+  }
+
+  /* ── MODAL ── */
+  .modal {
+    position: fixed; inset: 0; z-index: 400;
+    display: flex; align-items: center; justify-content: center;
+    padding: 16px;
+  }
+  .modal[hidden] { display: none; }
+
+  .modal-backdrop {
+    position: absolute; inset: 0;
+    background: rgba(6,9,15,0.82);
+    backdrop-filter: blur(6px);
+    cursor: pointer;
+  }
+
+  .modal-card {
+    position: relative; z-index: 1;
+    background: var(--navy-mid);
+    border: 1px solid var(--gold-dim);
+    padding: 44px 40px 40px;
+    width: 100%; max-width: 600px;
+    max-height: 90vh; overflow-y: auto;
+  }
+
+  .modal-close {
+    position: absolute; top: 16px; right: 16px;
+    background: none; border: none; cursor: pointer;
+    color: rgba(221,213,196,0.5); font-size: 16px;
+    transition: color .2s;
+    line-height: 1; padding: 4px 8px;
+  }
+  .modal-close:hover { color: var(--gold); }
+
+  .modal-card h2 {
+    font-family: var(--font-serif); font-weight: 600;
+    font-size: clamp(24px, 2.8vw, 36px); margin: 6px 0 10px;
+  }
+  .modal-intro {
+    font-size: 14px; line-height: 1.8;
+    color: rgba(221,213,196,0.72); margin-bottom: 24px;
+  }
+
+  .modal-form { display: flex; flex-direction: column; gap: 16px; }
+
+  .mform-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  }
+  @media (max-width: 540px) { .mform-row { grid-template-columns: 1fr; } }
+
+  .mform-group { display: flex; flex-direction: column; gap: 6px; }
+  .mform-group label {
+    font-family: var(--font-sans); font-size: 10px;
+    font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--gold);
+  }
+  .mform-group label span { color: rgba(196,154,42,0.5); }
+
+  .mform-group input,
+  .mform-group textarea {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--gold-dim);
+    color: var(--cream);
+    font-family: var(--font-sans); font-size: 14px;
+    padding: 11px 14px;
+    width: 100%;
+    transition: border-color .2s, background .2s;
+  }
+  .mform-group input::placeholder,
+  .mform-group textarea::placeholder { color: rgba(221,213,196,0.3); }
+  .mform-group input:focus,
+  .mform-group textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: rgba(196,154,42,0.05);
+  }
+  .mform-group textarea { resize: vertical; min-height: 80px; }
+
+  .modal-submit { width: 100%; margin-top: 4px; font-size: 11px; padding: 15px; }
+
+  .modal-disclaimer {
+    font-size: 11px; color: rgba(221,213,196,0.4);
+    text-align: center; line-height: 1.7; margin-top: 4px;
+  }
+  .modal-disclaimer a { color: var(--gold); text-decoration: none; }
+  .modal-disclaimer a:hover { text-decoration: underline; }
+</style>
+
+<script>
+  // Scroll handler — add .scrolled class
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav?.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // Mobile drawer toggle
+  const toggle = document.getElementById('nav-toggle');
+  const drawer = document.getElementById('nav-drawer');
+  toggle?.addEventListener('click', () => {
+    const open = drawer?.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+    drawer?.setAttribute('aria-hidden', String(!open));
+  });
+
+  // Reserve a Slip modal
+  const modal = document.getElementById('reserve-modal');
+  const backdrop = modal?.querySelector('.modal-backdrop');
+
+  function openModal() {
+    modal?.removeAttribute('hidden');
+    document.body.style.overflow = 'hidden';
+    (modal?.querySelector('.modal-close') as HTMLElement)?.focus();
+  }
+  function closeModal() {
+    modal?.setAttribute('hidden', '');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('reserve-btn')?.addEventListener('click', openModal);
+  document.getElementById('reserve-btn-mobile')?.addEventListener('click', openModal);
+  document.getElementById('modal-close')?.addEventListener('click', closeModal);
+  backdrop?.addEventListener('click', closeModal);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal?.hasAttribute('hidden')) closeModal();
+  });
+
+  // Trap focus inside modal while open
+  modal?.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab') return;
+    const focusable = Array.from(
+      modal.querySelectorAll<HTMLElement>('button, input, select, textarea, a[href]')
+    ).filter(el => !el.hasAttribute('disabled'));
+    if (!focusable.length) return;
+    const first = focusable[0], last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+</script>

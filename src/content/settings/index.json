@@ -1,0 +1,18 @@
+{
+  "siteName": "Boulder Marina",
+  "tagline": "Life Unanchored",
+  "phone": "(618) 226-3223",
+  "email": "bouldermarina@gmail.com",
+  "address": "26000 Boulder Access Rd, Boulder, IL 62231",
+  "vhfChannel": "16",
+  "storeHours": {
+    "thuFri": "11:00 AM – 6:00 PM",
+    "sat": "9:00 AM – 5:00 PM",
+    "sun": "9:00 AM – 3:30 PM",
+    "holiday": "9:00 AM – 3:30 PM"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/bouldermarina/",
+    "bycFacebook": "https://www.facebook.com/groups/320371721353276"
+  }
+}
