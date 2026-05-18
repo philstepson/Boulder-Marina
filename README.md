@@ -1,7 +1,7 @@
 # Boulder Marina — Astro Static Site
 
 **Live site (current WordPress):** https://bouldermarina.com
-**New site preview:** Cloudflare Pages (pending DNS cutover — owner approval required)
+**New site preview:** https://boulder-marina.pages.dev (pending DNS cutover — owner approval required)
 **Tech stack:** Astro 6 · Static output · Cloudflare Pages · Formspree
 
 > TinaCMS was removed due to a native module compile failure on Node 26 (no Xcode CLT).
@@ -146,7 +146,8 @@ Before switching bouldermarina.com to the new site:
 - [ ] Register Formspree endpoint (replace placeholder ID in both forms)
 - [ ] Owner reviews and approves all pages
 - [ ] Generate `public/_redirects` from old WordPress URL structure (see CLAUDE.md)
-- [ ] Add Cloudflare Pages domain → CNAME to `boulder-marina.pages.dev`
+- [x] Cloudflare Pages deployed → https://boulder-marina.pages.dev
+- [ ] Add custom domain → CNAME `boulder-marina.pages.dev` → `bouldermarina.com`
 - [ ] Submit new sitemap to Google Search Console
 
 ---

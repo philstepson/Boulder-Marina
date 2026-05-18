@@ -12,7 +12,7 @@ Two organizations that share a home port on Carlyle Lake, IL — both promoted t
 
 - Marina site: https://bouldermarina.com (currently WordPress — being replaced)
 - BYC site: https://boulderyc.org (stays live — we cross-link to it)
-- New preview URL: Cloudflare Pages (pending DNS cutover — owner approval required)
+- New preview URL: https://boulder-marina.pages.dev (pending DNS cutover — owner approval required)
 
 ---
 
