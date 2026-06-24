@@ -1,0 +1,276 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav        from '../components/Nav.astro';
+import Footer     from '../components/Footer.astro';
+
+const faqs = [
+  {
+    q: 'Is Carlyle Lake good for sailing?',
+    a: 'Yes. Carlyle Lake is consistently ranked among the best inland sailing lakes in the country. At 26,000 acres, it has enough fetch to develop real wind and waves, consistent prevailing winds from the south and southwest, and depth suitable for keelboats. It\'s one of the closest top-tier inland sailing destinations for sailors in the greater St. Louis area and Southern Illinois.',
+  },
+  {
+    q: 'What kind of sailboats use Carlyle Lake?',
+    a: 'Carlyle Lake sees everything from small day sailors and catamarans to full keelboats and cruisers in the 30+ ft range. Boulder Marina accommodates sailboats 18 to 37 ft in its slip inventory.',
+  },
+  {
+    q: 'Is there racing on Carlyle Lake?',
+    a: 'Boulder Yacht Club runs eight club races per season, including the Midnight Regatta, Renshaw Regatta, and Commodore\'s Cup. There are also lakewide events open to all clubs, including the CYC Moonlight Regatta, Cruiser\'s Cup, and The Great Race. Sailors of all levels are welcome.',
+  },
+  {
+    q: 'Do I need to be an experienced sailor to sail on Carlyle Lake?',
+    a: 'Not at all. Boulder Yacht Club welcomes beginners. You can come crew on someone else\'s boat in a race before you ever own one — it\'s a common way people get started. The sailing community here is genuinely welcoming to newcomers.',
+  },
+  {
+    q: 'Where can I keep my sailboat on Carlyle Lake?',
+    a: 'Boulder Marina offers floating concrete sailboat slips on the northeastern shore of Carlyle Lake for vessels 18 to 37 ft. Contact the marina for current availability.',
+  },
+];
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.bouldermarina.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Sailing on Carlyle Lake', item: 'https://www.bouldermarina.com/sailing-carlyle-lake/' },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(f => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Sailing on Carlyle Lake | Boulder Marina"
+  description="Carlyle Lake is one of the Midwest's premier inland sailing lakes — 26,000 acres, consistent wind, and depth for keelboats. Boulder Marina is the home port for sailors on the eastern shore."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <Nav />
+
+  <main>
+
+    <div class="page-masthead">
+      <img
+        src="/uploads/marina-panorama.jpg"
+        alt="Sailing on Carlyle Lake from Boulder Marina, Illinois"
+        width="1024" height="298"
+        loading="eager" fetchpriority="high"
+        class="page-masthead-img"
+      />
+      <div class="page-masthead-overlay" aria-hidden="true"></div>
+      <div class="page-masthead-content container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span aria-hidden="true">›</span> <span>Sailing on Carlyle Lake</span>
+        </nav>
+        <h1>Sailing on Carlyle Lake</h1>
+      </div>
+    </div>
+
+    <section class="section intro-section">
+      <div class="container intro-grid">
+        <div class="intro-text">
+          <p class="section-tag">Carlyle Lake · 26,000 Acres · Southern Illinois</p>
+          <h2>One of the Midwest's best inland sailing lakes — and it's right here in Illinois.</h2>
+          <p>
+            Carlyle Lake doesn't just tolerate sailors — it's built for them. At 26,000 acres,
+            it's the largest man-made lake in Illinois. The prevailing winds from the south and
+            southwest produce reliable sailing conditions, and with a surface area that stretches
+            15 miles long and 3½ miles wide at normal pool, there's enough fetch to make it
+            genuinely interesting in a breeze.
+          </p>
+          <p>
+            For sailors in the greater St. Louis area and Southern Illinois, Carlyle Lake is the
+            closest thing to a big-water sailing experience without going to the Great Lakes. And
+            Boulder Marina, on the northeastern shore, has been the home port for serious sailors
+            since before Boulder Yacht Club was founded here in 1983.
+          </p>
+          <div class="intro-ctas">
+            <a href="/sailboat-marina" class="btn btn--fill">Sailboat Marina on Carlyle Lake</a>
+            <a href="/boulder-yacht-club" class="btn">Explore BYC</a>
+          </div>
+        </div>
+        <div class="lake-stats">
+          {[
+            { val: '26,000', label: 'Acres' },
+            { val: '15 mi', label: 'Long at normal pool' },
+            { val: '3½ mi', label: 'Wide' },
+            { val: '1983', label: 'BYC founded at Boulder Marina' },
+          ].map(s => (
+            <div class="lake-stat">
+              <span class="stat-val">{s.val}</span>
+              <span class="stat-label">{s.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section why-section">
+      <div class="container">
+        <p class="section-tag">Why Sailors Choose Carlyle Lake</p>
+        <h2>The wind, the water, and the community.</h2>
+        <div class="why-grid">
+          {[
+            { icon: '💨', title: 'Consistent Wind', body: 'Prevailing south and southwest winds produce reliable sailing conditions throughout the season — good for both casual cruising and competitive racing.' },
+            { icon: '🌊', title: 'Deep Enough for Keelboats', body: 'Carlyle Lake has the depth to accommodate keelboats throughout most of the sailing areas. Fewer worries about the bottom.' },
+            { icon: '📐', title: 'Room to Sail', body: '26,000 acres gives you room to tack, reach, and run without constantly doubling back. More like an inland sea than a reservoir.' },
+            { icon: '🏆', title: 'Active Racing', body: 'Boulder Yacht Club runs eight club races per season plus participation in lakewide events with other Carlyle Lake clubs. Competitive without being exclusionary.' },
+            { icon: '⛵', title: 'Strong Sailing Culture', body: 'Carlyle Lake has multiple yacht clubs, an active cruising community, and decades of sailing tradition. You\'re joining something with roots.' },
+            { icon: '📍', title: 'Close to St. Louis', body: 'A practical weekend sailing destination for boaters from the greater St. Louis area and the Illinois Metro East — without a multi-day drive to find serious water.' },
+          ].map(w => (
+            <article class="why-card">
+              <span class="why-icon" aria-hidden="true">{w.icon}</span>
+              <h3>{w.title}</h3>
+              <p>{w.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section racing-section">
+      <div class="container racing-grid">
+        <div>
+          <p class="section-tag">Racing on Carlyle Lake</p>
+          <h2>From first-timers to seasoned racers — all welcome.</h2>
+          <p>Boulder Yacht Club runs one of the most active racing programs on Carlyle Lake. Eight club races per season, including night races, regattas, and the season-closing Commodore's Cup. Lakewide events like the CYC Moonlight Regatta and The Great Race draw boats from across the lake.</p>
+          <p>If you've never raced before, the best way to start is to come crew on someone else's boat. It's a tradition at BYC — ask at the marina or at the club.</p>
+          <a href="/events" class="btn" style="margin-top: 8px; display: inline-block;">2026 Race Calendar →</a>
+        </div>
+        <ul class="race-list">
+          <li class="race-item">
+            <span class="race-name">BYC Midnight Regatta</span>
+            <span class="race-tag">BYC</span>
+          </li>
+          <li class="race-item">
+            <span class="race-name">Renshaw Regatta</span>
+            <span class="race-tag">BYC</span>
+          </li>
+          <li class="race-item">
+            <span class="race-name">BYC Commodore's Cup</span>
+            <span class="race-tag">BYC</span>
+          </li>
+          <li class="race-item">
+            <span class="race-name">CYC Moonlight Regatta</span>
+            <span class="race-tag">Lakewide</span>
+          </li>
+          <li class="race-item">
+            <span class="race-name">Cruiser's Cup #1 & #2</span>
+            <span class="race-tag">Lakewide</span>
+          </li>
+          <li class="race-item">
+            <span class="race-name">TYC Commodore's Cup</span>
+            <span class="race-tag">Lakewide</span>
+          </li>
+          <li class="race-item">
+            <span class="race-name">CSA Whale of a Sail</span>
+            <span class="race-tag">Lakewide</span>
+          </li>
+          <li class="race-item">
+            <span class="race-name">The Great Race</span>
+            <span class="race-tag">Lakewide</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section faq-section">
+      <div class="container faq-inner">
+        <p class="section-tag">Common Questions</p>
+        <h2>Sailing on Carlyle Lake — FAQs</h2>
+        <dl class="faq-list">
+          {faqs.map(f => (
+            <div class="faq-item">
+              <dt>{f.q}</dt>
+              <dd>{f.a}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+
+    <section class="cta-banner">
+      <div class="container cta-inner">
+        <div>
+          <p class="section-tag">Carlyle Lake · Boulder Marina</p>
+          <h2>Ready to sail on Carlyle Lake?</h2>
+          <p>Contact Boulder Marina to ask about sailboat slips, lift scheduling, or anything you need to get your boat on the water.</p>
+        </div>
+        <div class="cta-buttons">
+          <a href="/sailboat-marina" class="btn btn--fill">Sailboat Marina Details</a>
+          <a href="/contact#slip-reservation" class="btn">Request a Slip</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-masthead { position: relative; width: 100%; line-height: 0; }
+  .page-masthead-img { width: 100%; height: auto; display: block; filter: brightness(0.85) saturate(0.85); }
+  .page-masthead-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(6,9,15,0.45) 0%, rgba(6,9,15,0.15) 40%, rgba(6,9,15,0.7) 100%); }
+  .page-masthead-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: clamp(16px, 4%, 36px); z-index: 10; }
+  .page-masthead-content h1 { font-family: var(--font-serif); font-weight: 700; font-size: clamp(32px, 5vw, 68px); color: #fff; line-height: 1.05; margin-top: 8px; }
+  .breadcrumb { font-size: 11px; letter-spacing: 1px; color: rgba(221,213,196,0.55); display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .breadcrumb a { color: var(--gold); text-decoration: none; }
+
+  .section { padding: var(--section-pad) 0; }
+  .intro-section { background: var(--navy); }
+  .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+  .intro-text h2 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(24px, 3vw, 40px); line-height: 1.15; margin-bottom: 20px; }
+  .intro-text p { font-size: 15px; line-height: 1.85; color: rgba(221,213,196,0.82); margin-bottom: 16px; }
+  .intro-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 24px; }
+  .lake-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--gold-dim); align-content: start; }
+  .lake-stat { background: var(--navy-mid); padding: 28px 20px; }
+  .stat-val { display: block; font-family: var(--font-serif); font-weight: 700; font-size: clamp(22px, 2.8vw, 36px); color: var(--gold); margin-bottom: 6px; }
+  .stat-label { display: block; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: rgba(221,213,196,0.78); }
+
+  .why-section { background: var(--navy-mid); border-top: 1px solid var(--gold-dim); border-bottom: 1px solid var(--gold-dim); }
+  .why-section h2 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(24px, 3vw, 40px); margin-bottom: 48px; }
+  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--gold-glow); }
+  .why-card { padding: 32px 24px; background: rgba(255,255,255,0.02); border: 1px solid var(--gold-dim); transition: background .3s; }
+  .why-card:hover { background: var(--gold-glow); }
+  .why-icon { font-size: 24px; display: block; margin-bottom: 14px; }
+  .why-card h3 { font-family: var(--font-serif); font-weight: 600; font-size: 19px; margin-bottom: 10px; }
+  .why-card p { font-size: 14px; line-height: 1.85; color: rgba(221,213,196,0.78); }
+
+  .racing-section { background: var(--navy); border-top: 1px solid var(--gold-dim); }
+  .racing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+  .racing-grid h2 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(24px, 3vw, 38px); margin-bottom: 20px; }
+  .racing-grid p { font-size: 15px; line-height: 1.85; color: rgba(221,213,196,0.82); margin-bottom: 14px; }
+  .race-list { list-style: none; display: flex; flex-direction: column; gap: 0; border: 1px solid var(--gold-dim); }
+  .race-item { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid rgba(196,154,42,0.1); }
+  .race-item:last-child { border-bottom: none; }
+  .race-name { font-family: var(--font-serif); font-weight: 600; font-size: 16px; }
+  .race-tag { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold-dim); padding: 3px 8px; }
+
+  .faq-section { background: var(--navy-mid); border-top: 1px solid var(--gold-dim); }
+  .faq-inner { max-width: 780px; }
+  .faq-section h2 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(24px, 3vw, 38px); margin-bottom: 40px; }
+  .faq-list { display: flex; flex-direction: column; }
+  .faq-item { border-bottom: 1px solid var(--gold-dim); padding: 24px 0; }
+  .faq-item dt { font-family: var(--font-serif); font-weight: 600; font-size: 18px; margin-bottom: 10px; color: var(--cream); }
+  .faq-item dd { font-size: 14px; line-height: 1.85; color: rgba(221,213,196,0.78); margin: 0; }
+
+  .cta-banner { background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy-mid) 100%); border-top: 1px solid var(--gold-dim); padding: 80px 0; }
+  .cta-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 36px; }
+  .cta-inner h2 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(24px, 3vw, 40px); margin-bottom: 12px; }
+  .cta-inner p { font-size: 15px; color: rgba(221,213,196,0.78); max-width: 480px; line-height: 1.8; }
+  .cta-buttons { display: flex; gap: 16px; flex-wrap: wrap; flex-shrink: 0; }
+
+  @media (max-width: 960px) {
+    .intro-grid, .racing-grid { grid-template-columns: 1fr; gap: 40px; }
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) { .why-grid { grid-template-columns: 1fr; } }
+</style>

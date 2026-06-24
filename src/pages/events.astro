@@ -1,6 +1,6 @@
 ---
 // src/pages/events.astro
-// 2025 season events pulled from boulderyc.org/wp-json/tribe/events/v1/events
+// 2026 season events pulled from boulderyc.org/wp-json/tribe/events/v1/events
 // Update each season with fresh data from the BYC API.
 
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -9,140 +9,172 @@ import Footer     from '../components/Footer.astro';
 
 const events = [
   {
-    date: '2025-01-01', month: 'January', day: 'Wednesday',
-    time: 'Time TBD',
-    title: 'BYC Race 1',
-    org: 'BYC', category: 'Racing',
-    description: 'Season opener race. Time to be announced.',
-    lakewide: false,
-  },
-  {
-    date: '2025-04-26', month: 'April', day: 'Saturday',
-    time: '12:00 – 9:00 PM',
-    title: 'Spring Thaw Work Day & Potluck',
-    org: 'BYC', category: 'Marina',
-    description: 'All hands on deck to clean, repair, and prepare for the season. Potluck dinner to follow — bring a dish.',
-    lakewide: false,
-  },
-  {
-    date: '2025-05-10', month: 'May', day: 'Saturday',
-    time: '5:00 – 7:00 PM',
-    title: 'Potluck Supper',
+    date: '2026-03-13', month: 'March', day: 'Friday',
+    time: '5:00 – 10:00 PM',
+    title: '2026 No Boat Regatta',
     org: 'BYC', category: 'Social',
-    description: 'Casual potluck supper at the marina. Bring a dish and your appetite.',
+    description: 'Kick off the season before the boats hit the water — a BYC tradition of sailing stories, tall tales, and camaraderie. No boat required.',
     lakewide: false,
   },
   {
-    date: '2025-05-17', month: 'May', day: 'Saturday',
-    time: '12:00 – 4:00 PM',
-    title: 'Boulder Marina Open House & BBQ',
-    org: 'Marina', category: 'Marina',
-    description: 'Come see the marina, meet the community, and enjoy a free BBQ. All are welcome — boaters and landlubbers alike.',
+    date: '2026-05-16', month: 'May', day: 'Saturday',
+    time: '6:00 PM',
+    title: "Spero's Spaghetti Dinner",
+    org: 'BYC', category: 'Social',
+    description: "A beloved BYC tradition. Come for the pasta, stay for the company. One of the most anticipated social nights of the early season.",
     lakewide: false,
   },
   {
-    date: '2025-06-07', month: 'June', day: 'Saturday',
-    time: '12:00 – 5:00 PM',
-    title: 'Cruiser Cup #1',
-    org: 'Lakewide', category: 'Racing',
-    description: 'CYC-sponsored lakewide racing event. Open to all Carlyle Lake sailors.',
-    lakewide: true,
-  },
-  {
-    date: '2025-06-14', month: 'June', day: 'Saturday',
+    date: '2026-05-30', month: 'May', day: 'Saturday',
     time: '12:00 – 4:00 PM',
-    title: "Tradewinds Yacht Club — Commodore's Cup",
+    title: "TYC Commodore's Cup",
     org: 'Lakewide', category: 'Racing',
-    description: 'TYC-hosted lakewide racing event. See Notice of Race for full details.',
+    description: "Tradewinds Yacht Club–hosted lakewide racing event. Open to all Carlyle Lake sailors. See Notice of Race for full details.",
     lakewide: true,
   },
   {
-    date: '2025-06-14', month: 'June', day: 'Saturday',
+    date: '2026-06-06', month: 'June', day: 'Saturday',
+    time: '12:00 – 4:00 PM',
+    title: "Cruiser's Cup #1",
+    org: 'Lakewide', category: 'Racing',
+    description: "TYC-sponsored lakewide cruiser race. First of two Cruiser's Cup events this season. Open to all Carlyle Lake sailors.",
+    lakewide: true,
+  },
+  {
+    date: '2026-06-13', month: 'June', day: 'Saturday',
+    time: '5:00 – 10:00 PM',
+    title: 'BYC Lethal Luau Party',
+    org: 'BYC', category: 'Social',
+    description: "Slip into something tropical and join BYC for one of the summer's liveliest nights. Tiki drinks, great music, and the best lakeside atmosphere on the eastern shore.",
+    lakewide: false,
+  },
+  {
+    date: '2026-06-27', month: 'June', day: 'Saturday',
+    time: 'All Day',
+    title: 'Fireworks Raft-Up',
+    org: 'Lakewide', category: 'Social',
+    description: "A Carlyle Lake tradition — tie up with friends and watch the fireworks light up the sky over the water. One of the most memorable nights of the season.",
+    lakewide: true,
+  },
+  {
+    date: '2026-07-11', month: 'July', day: 'Saturday',
     time: '5:00 – 9:00 PM',
-    title: 'Tapas on the Docks',
+    title: 'BYC Tapas on the Docks — Yacht Rock Theme',
     org: 'BYC', category: 'Social',
-    description: 'BYC\'s signature summer social. Small plates, good company, and the best seats on the lake. One of the season\'s most popular evenings.',
+    description: "BYC's signature summer social, this year with a Yacht Rock theme. Small plates, smooth grooves, and the best seats on the lake. Don't miss it.",
     lakewide: false,
   },
   {
-    date: '2025-06-28', month: 'June', day: 'Saturday',
-    time: '12:30 PM – late',
-    title: 'BYC Race 2 & Fireworks Raft-Up',
-    org: 'BYC', category: 'Racing',
-    description: 'Afternoon race followed by a lakewide fireworks raft-up after dark. A Carlyle Lake tradition.',
+    date: '2026-07-18', month: 'July', day: 'Saturday',
+    time: '12:00 – 4:00 PM',
+    title: 'CYC Home Port Race',
+    org: 'Lakewide', category: 'Racing',
+    description: 'CYC-hosted lakewide racing event. Open to all Carlyle Lake sailors.',
     lakewide: true,
   },
   {
-    date: '2025-07-12', month: 'July', day: 'Saturday',
-    time: '8:00 PM – late',
-    title: 'Moonlight Regatta',
-    org: 'BYC', category: 'Racing',
-    description: 'Race under the stars on Carlyle Lake. One of BYC\'s most beloved events — sailors of all levels welcome.',
-    lakewide: true,
-  },
-  {
-    date: '2025-07-19', month: 'July', day: 'Saturday',
-    time: 'TBD',
-    title: 'BYC Social Event',
-    org: 'BYC', category: 'Social',
-    description: 'Details to be announced. Check back or follow the BYC Facebook group for updates.',
-    lakewide: false,
-  },
-  {
-    date: '2025-07-26', month: 'July', day: 'Saturday',
-    time: '8:00 PM – late',
+    date: '2026-07-25', month: 'July', day: 'Saturday',
+    time: '8:00 – 11:30 PM',
     title: 'Lighted Boat Parade',
     org: 'Lakewide', category: 'Social',
-    description: 'Deck your boat in lights and join the parade on the lake after dark. A crowd favorite for families.',
+    description: "Deck your boat in lights and join the parade across Carlyle Lake after dark. A crowd favorite for families and a spectacular sight from the docks.",
     lakewide: true,
   },
   {
-    date: '2025-08-09', month: 'August', day: 'Saturday',
-    time: '8:00 PM – late',
-    title: 'Moonlight Regatta',
-    org: 'BYC', category: 'Racing',
-    description: 'Second Moonlight Regatta of the season. Race under the stars on Carlyle Lake.',
+    date: '2026-08-01', month: 'August', day: 'Saturday',
+    time: '8:00 – 11:30 PM',
+    title: 'CYC Moonlight Regatta',
+    org: 'Lakewide', category: 'Racing',
+    description: "Race under the stars on Carlyle Lake — a lakewide tradition and one of the most beloved events of the sailing season.",
     lakewide: true,
   },
   {
-    date: '2025-08-16', month: 'August', day: 'Saturday',
+    date: '2026-08-08', month: 'August', day: 'Saturday',
     time: '1:00 – 7:00 PM',
-    title: 'BYC Raft-Up',
+    title: 'BYC Pain Killer Raft Up',
     org: 'BYC', category: 'Social',
-    description: 'Tie up, float together, and enjoy an afternoon on the water with your BYC family.',
+    description: "Tie up, float together, and enjoy a long summer afternoon on the water with your BYC family. Bring drinks, snacks, and good spirits.",
     lakewide: false,
   },
   {
-    date: '2025-08-30', month: 'August', day: 'Saturday',
-    time: 'All Day',
-    title: 'Renshaw Regatta & BYC Race 3',
+    date: '2026-08-15', month: 'August', day: 'Saturday',
+    time: '12:30 – 4:00 PM',
+    title: 'Renshaw Regatta',
     org: 'BYC', category: 'Racing',
-    description: 'BYC-sponsored lakewide regatta and club race. One of the premier racing events on Carlyle Lake each season.',
+    description: "BYC's premier lakewide regatta — one of the most competitive and celebrated races on Carlyle Lake each season. See Notice of Race for full details.",
+    lakewide: false,
+  },
+  {
+    date: '2026-08-29', month: 'August', day: 'Saturday',
+    time: 'All Day',
+    title: 'CSA Whale of a Sail',
+    org: 'Lakewide', category: 'Racing',
+    description: "Two-day lakewide sailing event hosted by the Carlyle Sailing Association (Aug 29–30). Open to all Carlyle Lake sailors.",
     lakewide: true,
   },
   {
-    date: '2025-09-20', month: 'September', day: 'Saturday',
+    date: '2026-08-29', month: 'August', day: 'Saturday',
+    time: '8:30 – 11:00 PM',
+    title: 'BYC Midnight Regatta',
+    org: 'BYC', category: 'Racing',
+    description: "Race into the night on Carlyle Lake. BYC's nocturnal race is a thrilling test of seamanship and navigation — and an experience you won't forget.",
+    lakewide: false,
+  },
+  {
+    date: '2026-09-19', month: 'September', day: 'Saturday',
     time: 'All Day',
     title: 'BYC Charity Event',
     org: 'BYC', category: 'Charity',
-    description: 'BYC\'s annual charity fundraiser benefiting local causes including Backstoppers, Hannah\'s Playground, Got Your Six, and Miracles in Progress.',
+    description: "BYC's annual charity fundraiser benefiting local causes including Backstoppers, Hannah's Playground, Got Your Six, and Miracles in Progress.",
     lakewide: false,
   },
   {
-    date: '2025-10-04', month: 'October', day: 'Saturday',
-    time: 'All Day',
-    title: "Commodore's Cup, BYC Race 4 & Chili Cookoff",
+    date: '2026-09-26', month: 'September', day: 'Saturday',
+    time: '12:00 PM – 9:00 PM',
+    title: "Cruiser's Cup #2 & Chili Cookoff",
+    org: 'Lakewide', category: 'Racing',
+    description: "Second lakewide Cruiser's Cup of the season followed by BYC's legendary Chili Cookoff. Race in the afternoon, stir the pot in the evening.",
+    lakewide: true,
+  },
+  {
+    date: '2026-10-03', month: 'October', day: 'Saturday',
+    time: '12:00 – 4:00 PM',
+    title: "BYC Commodore's Cup",
     org: 'BYC', category: 'Racing',
-    description: 'Season finale race and the legendary Chili Cookoff. Bring your best recipe — bragging rights are on the line.',
+    description: "BYC's season finale race. A prestigious close to the 2026 racing season — all BYC sailors are welcome.",
     lakewide: false,
   },
   {
-    date: '2025-10-25', month: 'October', day: 'Saturday',
-    time: '8:00 AM – 5:00 PM',
+    date: '2026-10-17', month: 'October', day: 'Saturday',
+    time: '4:00 – 10:00 PM',
+    title: 'BYC Halloween Party & Chili Cookoff',
+    org: 'BYC', category: 'Social',
+    description: "Costumes encouraged, chili required. BYC's Halloween Party is one of the most spirited nights of the off-season social calendar — come ready to compete.",
+    lakewide: false,
+  },
+  {
+    date: '2026-10-24', month: 'October', day: 'Saturday',
+    time: '12:00 – 4:00 PM',
     title: 'The Great Race',
     org: 'Lakewide', category: 'Racing',
-    description: 'Lakewide season-closing racing event. Open to all Carlyle Lake sailors.',
+    description: "CYC-sponsored lakewide season-closing race. A fitting finale to a full season on Carlyle Lake. Open to all lake sailors.",
     lakewide: true,
+  },
+  {
+    date: '2026-11-07', month: 'November', day: 'Saturday',
+    time: '5:00 – 11:00 PM',
+    title: 'Boulder Community Thanksgiving Dinner',
+    org: 'BYC', category: 'Social',
+    description: "The BYC community gathers to give thanks. A warm, welcoming celebration to close out the active season — all marina and club members welcome.",
+    lakewide: false,
+  },
+  {
+    date: '2026-12-05', month: 'December', day: 'Saturday',
+    time: '12:00 – 4:00 PM',
+    title: 'BYC Holiday Luncheon',
+    org: 'BYC', category: 'Social',
+    description: "Celebrate the season with BYC at the annual holiday luncheon. A festive close to 2026 — members and guests welcome.",
+    lakewide: false,
   },
 ];
 
@@ -161,8 +193,8 @@ function dayNum(date: string) {
 ---
 
 <BaseLayout
-  title="2025 Events — Boulder Marina & Boulder Yacht Club | Carlyle Lake"
-  description="Full 2025 season calendar for Boulder Marina and Boulder Yacht Club — races, regattas, social events, and lakewide events on Carlyle Lake, Illinois."
+  title="2026 Events | Boulder Marina & Boulder Yacht Club on Carlyle Lake"
+  description="2026 season calendar for Boulder Marina and Boulder Yacht Club — races, regattas, social nights, and lakewide events on Carlyle Lake near St. Louis."
 >
   <Nav />
 
@@ -180,7 +212,7 @@ function dayNum(date: string) {
       />
       <div class="events-masthead-overlay" aria-hidden="true"></div>
       <div class="events-masthead-content container">
-        <p class="section-tag">2025 Season</p>
+        <p class="section-tag">2026 Season</p>
         <h1>Events Calendar</h1>
         <p class="masthead-sub">Racing, regattas, social nights, and lakewide events — Boulder Marina & BYC.</p>
       </div>

@@ -26,14 +26,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 // LocalBusiness structured data — boosts Google Maps & search appearance
 const structuredData = {
-  '@context':  'https://schema.org',
-  '@type':     'Marina',
-  name:        'Boulder Access Marina',
+  '@context':    'https://schema.org',
+  '@type':       ['LocalBusiness', 'SportsActivityLocation'],
+  '@id':         'https://www.bouldermarina.com/#localbusiness',
+  name:          'Boulder Access Marina',
   alternateName: 'Boulder Marina',
-  description: description,
-  url:         'https://bouldermarina.com',
-  telephone:   '+16182263223',
-  email:       'bouldermarina@gmail.com',
+  description:   'Boulder Marina is a full-service marina on Carlyle Lake serving sailboat, motorboat, pontoon, and cruiser owners from Southern Illinois and the greater St. Louis area.',
+  url:           'https://www.bouldermarina.com',
+  telephone:     '+16182263223',
+  email:         'bouldermarina@gmail.com',
   address: {
     '@type':           'PostalAddress',
     streetAddress:     '26000 Boulder Access Rd',
@@ -43,10 +44,28 @@ const structuredData = {
     addressCountry:    'US',
   },
   geo: {
-    '@type':     'GeoCoordinates',
+    '@type':    'GeoCoordinates',
     latitude:    38.5773,
     longitude:  -89.3512,
   },
+  areaServed: [
+    { '@type': 'Place', name: 'Carlyle Lake' },
+    { '@type': 'Place', name: 'Carlyle, Illinois' },
+    { '@type': 'Place', name: 'Boulder, Illinois' },
+    { '@type': 'Place', name: 'Southern Illinois' },
+    { '@type': 'Place', name: 'Greater St. Louis' },
+    { '@type': 'Place', name: 'Metro East Illinois' },
+  ],
+  knowsAbout: [
+    'Carlyle Lake marina',
+    'boat slips Carlyle Lake',
+    'sailboat slips',
+    'pontoon slips',
+    'motorboat marina',
+    'boat storage Carlyle Lake',
+    'marina near St. Louis',
+    'sailing on Carlyle Lake',
+  ],
   openingHoursSpecification: [
     { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Thursday', 'Friday'], opens: '11:00', closes: '18:00' },
     { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Saturday'], opens: '09:00', closes: '17:00' },
@@ -62,6 +81,17 @@ const structuredData = {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- ══ GOOGLE TAG MANAGER ══════════════════════════════════════════════
+       Replace GTM-XXXXXXX with the real container ID from tagmanager.google.com
+       Also replace GTM-XXXXXXX in the <noscript> tag in <body> below.
+  ══════════════════════════════════════════════════════════════════════ -->
+  <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+  <!-- ══ END GOOGLE TAG MANAGER ══════════════════════════════════════════ -->
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -104,6 +134,11 @@ const structuredData = {
   <link rel="sitemap" href="/sitemap-index.xml" />
 </head>
 <body>
+  <!-- ══ GOOGLE TAG MANAGER (noscript fallback) ═══════════════════════ -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- ══ END GOOGLE TAG MANAGER ══════════════════════════════════════════ -->
+
   <slot />
 </body>
 </html>

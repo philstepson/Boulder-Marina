@@ -1,0 +1,254 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav        from '../components/Nav.astro';
+import Footer     from '../components/Footer.astro';
+
+const faqs = [
+  {
+    q: 'Do you offer dry boat storage at Boulder Marina?',
+    a: 'Yes. Boulder Marina offers on-site dry storage at $99/month. Cradle, trailer, and jack stand storage is also available at $75/season. Contact the marina to confirm current availability.',
+  },
+  {
+    q: 'Should I choose a wet slip or dry storage for my boat?',
+    a: 'A wet slip keeps your boat in the water all season — ready to go whenever you are, with no launching hassle. Dry storage is a better fit if you boat less frequently or want your boat out of the water during the off-season. Many boaters use a slip during the season and switch to dry storage in the fall.',
+  },
+  {
+    q: 'Can sailboats and pontoons use dry storage at Boulder Marina?',
+    a: 'Yes. Boulder Marina\'s storage options accommodate both sailboats and powerboats, including pontoons. Contact the marina about your specific vessel to confirm fit and availability.',
+  },
+  {
+    q: 'Do you offer winter boat storage on Carlyle Lake?',
+    a: 'Off-season storage is available on site. Contact Boulder Marina in the fall to arrange winterization and storage before the season ends.',
+  },
+  {
+    q: 'Does Boulder Marina offer haul-out service?',
+    a: 'Yes. Lift-in and lift-out service is available at $200/ride. Labor is $125/hr for any yard work needed during haul-out. Schedule in advance — especially at the start and end of the season.',
+  },
+];
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.bouldermarina.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Boat Storage', item: 'https://www.bouldermarina.com/boat-storage/' },
+  ],
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Boat Storage on Carlyle Lake',
+  provider: { '@id': 'https://www.bouldermarina.com/#localbusiness' },
+  areaServed: [
+    { '@type': 'Place', name: 'Carlyle Lake' },
+    { '@type': 'Place', name: 'Southern Illinois' },
+    { '@type': 'Place', name: 'Greater St. Louis' },
+  ],
+  serviceType: 'Boat and marine storage',
+  description: 'Dry boat storage, cradle and trailer storage, and seasonal wet slip options on Carlyle Lake for sailboats, pontoons, and motorboats.',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(f => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Boat Storage on Carlyle Lake | Boulder Marina"
+  description="Dry storage, cradle and trailer storage, and seasonal boat slip options on Carlyle Lake for sailboats, pontoons, and motorboats. Contact Boulder Marina for availability."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <Nav />
+
+  <main>
+
+    <div class="page-masthead">
+      <img
+        src="/uploads/marina-panorama.jpg"
+        alt="Boat storage and dry storage at Boulder Marina on Carlyle Lake"
+        width="1024" height="298"
+        loading="eager" fetchpriority="high"
+        class="page-masthead-img"
+      />
+      <div class="page-masthead-overlay" aria-hidden="true"></div>
+      <div class="page-masthead-content container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span aria-hidden="true">›</span> <span>Boat Storage</span>
+        </nav>
+        <h1>Boat Storage on Carlyle Lake</h1>
+      </div>
+    </div>
+
+    <section class="section intro-section">
+      <div class="container intro-grid">
+        <div class="intro-text">
+          <p class="section-tag">Boulder Marina · Carlyle Lake, Illinois</p>
+          <h2>Keep your boat close to the lake — all year long.</h2>
+          <p>
+            Boulder Marina offers on-site dry storage for sailboats, pontoons, and motorboats on
+            Carlyle Lake. Whether you need off-season winter storage or a place to keep your boat
+            between outings, the marina has practical, affordable options.
+          </p>
+          <p>
+            Dry storage runs <strong>$99/month</strong>. Cradle, trailer, and jack stand storage
+            is available at <strong>$75/season</strong>. Combine storage with a seasonal wet slip
+            and your boat has a home on Carlyle Lake year-round.
+          </p>
+          <div class="intro-ctas">
+            <a href="/contact" class="btn btn--fill">Ask About Storage Availability</a>
+            <a href="/services" class="btn">View Full Rate Sheet</a>
+          </div>
+        </div>
+        <div class="storage-options">
+          <p class="section-tag">Storage Options</p>
+          {[
+            { name: 'Dry Storage', price: '$99/mo', detail: 'On-site storage for any vessel. Monthly rate.' },
+            { name: 'Cradle / Trailer / Jack Stand', price: '$75/season', detail: 'Seasonal storage for vessels on their own cradle, trailer, or stands.' },
+            { name: 'Seasonal Wet Slip', price: 'From $139.50/mo', detail: 'Keep your boat in the water all season. 18–37 ft slips available.' },
+            { name: 'Lift-In / Lift-Out', price: '$200/ride', detail: 'Scheduled haul-out and launch service. $125/hr labor thereafter.' },
+          ].map(o => (
+            <div class="storage-row">
+              <div>
+                <span class="storage-name">{o.name}</span>
+                <span class="storage-detail">{o.detail}</span>
+              </div>
+              <span class="storage-price">{o.price}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section compare-section">
+      <div class="container compare-grid">
+        <article class="compare-card">
+          <h3>Wet Slip</h3>
+          <p class="compare-sub">Best for: frequent boaters who want to go any day</p>
+          <ul class="compare-list">
+            <li>Boat stays in the water all season</li>
+            <li>No launching needed — untie and go</li>
+            <li>Water and shore power at your slip</li>
+            <li>Available 18–37 ft</li>
+            <li>Rates from $139.50/month</li>
+          </ul>
+          <a href="/boat-slips" class="btn" style="margin-top: 20px; display: inline-block;">Learn about slips →</a>
+        </article>
+        <article class="compare-card">
+          <h3>Dry Storage</h3>
+          <p class="compare-sub">Best for: less frequent boaters and off-season storage</p>
+          <ul class="compare-list">
+            <li>On-site storage on dry land</li>
+            <li>Reduce hull fouling between outings</li>
+            <li>Good for off-season winterization</li>
+            <li>$99/month</li>
+            <li>Cradle/trailer storage: $75/season</li>
+          </ul>
+          <a href="/contact" class="btn" style="margin-top: 20px; display: inline-block;">Check availability →</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section faq-section">
+      <div class="container faq-inner">
+        <p class="section-tag">Common Questions</p>
+        <h2>Boat storage FAQs</h2>
+        <dl class="faq-list">
+          {faqs.map(f => (
+            <div class="faq-item">
+              <dt>{f.q}</dt>
+              <dd>{f.a}</dd>
+            </div>
+          ))}
+        </dl>
+        <div class="related-links">
+          <p class="section-tag" style="margin-top: 40px;">Related Pages</p>
+          <ul class="related-list">
+            <li><a href="/boat-slips">Seasonal boat slips on Carlyle Lake →</a></li>
+            <li><a href="/marina-services">Marina services on Carlyle Lake →</a></li>
+            <li><a href="/services">Full rate sheet →</a></li>
+            <li><a href="/contact">Contact the marina →</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-banner">
+      <div class="container cta-inner">
+        <div>
+          <p class="section-tag">Carlyle Lake · Year-Round</p>
+          <h2>Keep your boat on the lake — not in your driveway.</h2>
+          <p>Contact Boulder Marina to ask about current dry storage and slip availability for your vessel.</p>
+        </div>
+        <div class="cta-buttons">
+          <a href="/contact" class="btn btn--fill">Ask About Storage</a>
+          <a href="/services" class="btn">View All Rates</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-masthead { position: relative; width: 100%; line-height: 0; }
+  .page-masthead-img { width: 100%; height: auto; display: block; filter: brightness(0.85) saturate(0.85); }
+  .page-masthead-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(6,9,15,0.45) 0%, rgba(6,9,15,0.15) 40%, rgba(6,9,15,0.7) 100%); }
+  .page-masthead-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: clamp(16px, 4%, 36px); z-index: 10; }
+  .page-masthead-content h1 { font-family: var(--font-serif); font-weight: 700; font-size: clamp(32px, 5vw, 68px); color: #fff; line-height: 1.05; margin-top: 8px; }
+  .breadcrumb { font-size: 11px; letter-spacing: 1px; color: rgba(221,213,196,0.55); display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .breadcrumb a { color: var(--gold); text-decoration: none; }
+
+  .section { padding: var(--section-pad) 0; }
+  .intro-section { background: var(--navy); }
+  .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+  .intro-text h2 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(24px, 3vw, 40px); line-height: 1.15; margin-bottom: 20px; }
+  .intro-text p { font-size: 15px; line-height: 1.85; color: rgba(221,213,196,0.82); margin-bottom: 16px; }
+  .intro-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 24px; }
+  .storage-options { background: var(--navy-mid); border: 1px solid var(--gold-dim); padding: 36px; display: flex; flex-direction: column; gap: 0; }
+  .storage-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 18px 0; border-bottom: 1px solid rgba(196,154,42,0.1); }
+  .storage-row:last-child { border-bottom: none; }
+  .storage-name { display: block; font-family: var(--font-serif); font-weight: 600; font-size: 17px; margin-bottom: 4px; }
+  .storage-detail { display: block; font-size: 13px; color: rgba(221,213,196,0.65); line-height: 1.5; }
+  .storage-price { font-size: 13px; color: var(--gold); white-space: nowrap; font-weight: 400; padding-top: 3px; }
+
+  .compare-section { background: var(--navy-mid); border-top: 1px solid var(--gold-dim); border-bottom: 1px solid var(--gold-dim); }
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .compare-card { background: rgba(255,255,255,0.02); border: 1px solid var(--gold-dim); padding: 40px; }
+  .compare-card h3 { font-family: var(--font-serif); font-weight: 600; font-size: 26px; margin-bottom: 6px; }
+  .compare-sub { font-size: 12px; color: var(--gold); letter-spacing: 0.5px; margin-bottom: 24px; }
+  .compare-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .compare-list li { font-size: 14px; color: rgba(221,213,196,0.78); padding-left: 18px; position: relative; }
+  .compare-list li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
+
+  .faq-section { background: var(--navy); border-top: 1px solid var(--gold-dim); }
+  .faq-inner { max-width: 780px; }
+  .faq-section h2 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(24px, 3vw, 38px); margin-bottom: 40px; }
+  .faq-list { display: flex; flex-direction: column; }
+  .faq-item { border-bottom: 1px solid var(--gold-dim); padding: 24px 0; }
+  .faq-item dt { font-family: var(--font-serif); font-weight: 600; font-size: 18px; margin-bottom: 10px; color: var(--cream); }
+  .faq-item dd { font-size: 14px; line-height: 1.85; color: rgba(221,213,196,0.78); margin: 0; }
+  .related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+  .related-list a { font-size: 14px; color: rgba(221,213,196,0.78); text-decoration: none; transition: color .2s; }
+  .related-list a:hover { color: var(--gold); }
+
+  .cta-banner { background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy-mid) 100%); border-top: 1px solid var(--gold-dim); padding: 80px 0; }
+  .cta-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 36px; }
+  .cta-inner h2 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(24px, 3vw, 40px); margin-bottom: 12px; }
+  .cta-inner p { font-size: 15px; color: rgba(221,213,196,0.78); max-width: 480px; line-height: 1.8; }
+  .cta-buttons { display: flex; gap: 16px; flex-wrap: wrap; flex-shrink: 0; }
+
+  @media (max-width: 960px) {
+    .intro-grid, .compare-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+</style>

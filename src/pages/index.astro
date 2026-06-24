@@ -33,15 +33,15 @@ const bycSection = {
   headline: 'Boulder Yacht Club — Your home on the eastern shore.',
   body:     'BYC has been the only yacht club on the eastern shore of Carlyle Lake since 1983. Whether you race, cruise, paddle, or just show up for Tapas on the Docks — you belong here. Sailors, pontoon captains, kayakers, newcomers, and old salts alike.',
   events: [
-    { title: 'Tapas on the Docks',       org: 'BYC',   type: 'Social' },
-    { title: 'Moonlight Regatta',         org: 'BYC',   type: 'Racing' },
-    { title: 'Pirate Party',              org: 'BYC',   type: 'Social' },
-    { title: 'Renshaw Regatta',           org: 'BYC',   type: 'Racing' },
-    { title: 'Seafood Charity Dinner',    org: 'Both',  type: 'Charity' },
-    { title: 'Spero\'s Spaghetti Dinner', org: 'BYC',   type: 'Social' },
-    { title: 'Commodore\'s Cup',          org: 'BYC',   type: 'Racing' },
-    { title: 'Chili Cookoff',             org: 'BYC',   type: 'Social' },
-    { title: 'Survivor Party',            org: 'BYC',   type: 'Social' },
+    { title: 'Tapas on the Docks — Yacht Rock Theme', org: 'BYC',      type: 'Social'   },
+    { title: 'BYC Midnight Regatta',                   org: 'BYC',      type: 'Racing'   },
+    { title: 'Lethal Luau Party',                      org: 'BYC',      type: 'Social'   },
+    { title: 'Renshaw Regatta',                        org: 'BYC',      type: 'Racing'   },
+    { title: 'BYC Charity Event',                      org: 'BYC',      type: 'Charity'  },
+    { title: 'Spero\'s Spaghetti Dinner',              org: 'BYC',      type: 'Social'   },
+    { title: 'BYC Commodore\'s Cup',                   org: 'BYC',      type: 'Racing'   },
+    { title: 'Halloween Party & Chili Cookoff',        org: 'BYC',      type: 'Social'   },
+    { title: 'Fireworks Raft-Up',                      org: 'Both',     type: 'Social'   },
   ],
   board: [
     { role: 'Commodore',          name: 'Mark Swinburne' },
@@ -70,8 +70,8 @@ const services = [
 ---
 
 <BaseLayout
-  title="Boulder Marina — Life Unanchored | Carlyle Lake, IL"
-  description="Full-service marina on the northeastern shore of Carlyle Lake, Illinois. Floating concrete docks, slip rentals, marine services, ship store, and home of Boulder Yacht Club since 1983."
+  title="Boulder Marina | Carlyle Lake Marina Near St. Louis"
+  description="Boat slips, marina services, storage, and lake access for sailboats, motorboats, pontoons, and cruisers on Carlyle Lake near St. Louis."
 >
   <Nav />
 
@@ -372,11 +372,11 @@ const services = [
 
   .amenity-pills { display: flex; flex-wrap: wrap; gap: 8px; }
   .amenity-pill {
-    font-size: 11px; font-weight: 300; padding: 8px 14px;
-    border: 1px solid var(--gold-dim); color: rgba(221,213,196,0.6);
+    font-size: 13px; font-weight: 600; padding: 8px 14px;
+    border: 1px solid rgba(196,154,42,0.4); color: var(--cream);
     transition: border-color .25s, color .25s;
   }
-  .amenity-pill:hover { border-color: var(--gold); color: var(--cream); }
+  .amenity-pill:hover { border-color: var(--gold); color: #fff; }
 
   /* ── SERVICES ── */
   .section-header {
@@ -467,7 +467,7 @@ const services = [
   }
   .stat-label {
     display: block; font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
-    color: rgba(221,213,196,0.4); margin-top: 8px;
+    color: rgba(221,213,196,0.78); margin-top: 8px;
   }
 
   /* ── GALLERY ── */

@@ -1,0 +1,290 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav        from '../components/Nav.astro';
+import Footer     from '../components/Footer.astro';
+
+const faqs = [
+  {
+    q: 'Do you offer seasonal boat slips on Carlyle Lake?',
+    a: 'Yes. Boulder Marina offers seasonal slip contracts for vessels 18 to 37 feet. Monthly rates start at $139.50 for an 18 ft slip. Contact the marina for current availability and to discuss your boat\'s fit.',
+  },
+  {
+    q: 'Can both sailboats and motorboats use slips at Boulder Marina?',
+    a: 'Absolutely. Boulder Marina serves a mix of sailboats, pontoons, motorboats, cruisers, and fishing boats. Our floating concrete docks accommodate a wide range of vessel types and sizes.',
+  },
+  {
+    q: 'How do I check slip availability?',
+    a: 'Call us at (618) 226-3223, email bouldermarina@gmail.com, or use the slip request form on our contact page. Availability changes throughout the season, so reaching out directly is the fastest way to get an answer.',
+  },
+  {
+    q: 'Is Boulder Marina a good base for St. Louis area boaters?',
+    a: 'Many of our slip holders come from the greater St. Louis area and Metro East. Carlyle Lake offers a practical weekend boating destination with consistent wind for sailors and plenty of open water for powerboaters.',
+  },
+  {
+    q: 'What amenities come with a slip?',
+    a: 'Every slip includes water and shore power hookups. The marina also offers free WiFi, a heated clubhouse, a heated bathhouse, a ship\'s store, and a sunset pavilion. Day use and trailer parking are also available.',
+  },
+];
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.bouldermarina.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Boat Slips', item: 'https://www.bouldermarina.com/boat-slips/' },
+  ],
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Boat Slips on Carlyle Lake',
+  provider: { '@id': 'https://www.bouldermarina.com/#localbusiness' },
+  areaServed: [
+    { '@type': 'Place', name: 'Carlyle Lake' },
+    { '@type': 'Place', name: 'Southern Illinois' },
+    { '@type': 'Place', name: 'Greater St. Louis' },
+  ],
+  serviceType: 'Boat slip rental',
+  description: 'Seasonal and annual boat slips on Carlyle Lake for sailboats, motorboats, pontoons, and cruisers.',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(f => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Boat Slips on Carlyle Lake | Boulder Marina"
+  description="Seasonal and annual boat slips on Carlyle Lake for sailboats, pontoons, motorboats, and cruisers. Floating concrete docks with water and electric. Contact Boulder Marina for availability."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <Nav />
+
+  <main>
+
+    <!-- ── MASTHEAD ── -->
+    <div class="page-masthead">
+      <img
+        src="/uploads/marina-panorama.jpg"
+        alt="Boat slips at Boulder Marina on Carlyle Lake, Illinois"
+        width="1024" height="298"
+        loading="eager" fetchpriority="high"
+        class="page-masthead-img"
+      />
+      <div class="page-masthead-overlay" aria-hidden="true"></div>
+      <div class="page-masthead-content container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span aria-hidden="true">›</span> <span>Boat Slips</span>
+        </nav>
+        <h1>Boat Slips on Carlyle Lake</h1>
+      </div>
+    </div>
+
+    <!-- ── INTRO ── -->
+    <section class="section intro-section">
+      <div class="container intro-grid">
+        <div class="intro-text">
+          <p class="section-tag">Boulder Marina · Carlyle Lake, Illinois</p>
+          <h2>A slip on the best inland sailing lake in the Midwest.</h2>
+          <p>
+            Boulder Marina offers floating concrete boat slips on the northeastern shore of Carlyle Lake —
+            the largest man-made lake in Illinois and one of the Midwest's premier destinations for
+            sailboats, pontoons, motorboats, and cruisers.
+          </p>
+          <p>
+            Whether you're a weekend sailor from the greater St. Louis area, a Southern Illinois
+            powerboater looking for a home dock, or someone making the move from trailer to slip for
+            the first time, Boulder Marina gives you a practical, welcoming base on the water.
+          </p>
+          <p>
+            Slip rates start at <strong>$139.50/month</strong> for 18 ft vessels, scaling up to
+            37 ft. All contracts are seasonal. Water and shore power are included at every slip.
+          </p>
+          <div class="intro-ctas">
+            <a href="/contact#slip-reservation" class="btn btn--fill">Request Slip Availability</a>
+            <a href="/services" class="btn">View Full Rate Sheet</a>
+          </div>
+        </div>
+        <div class="intro-stats">
+          {[
+            { val: '18–37 ft', label: 'Slip sizes available' },
+            { val: '$139.50', label: 'Starting monthly rate' },
+            { val: '26,000', label: 'Acre lake' },
+            { val: '$25', label: 'Day use flat rate' },
+          ].map(s => (
+            <div class="stat-box">
+              <span class="stat-val">{s.val}</span>
+              <span class="stat-label">{s.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FEATURES ── -->
+    <section class="section features-section">
+      <div class="container">
+        <p class="section-tag">What's Included</p>
+        <h2>Slips built for real boaters.</h2>
+        <div class="features-grid">
+          {[
+            { icon: '⚓', title: 'Floating Concrete Docks', body: 'Stable, durable concrete docks that move with the water — better for your boat and easier to board in any conditions.' },
+            { icon: '⚡', title: 'Water & Shore Power', body: 'Every slip includes water and electric hookups. 50A electric is available for larger vessels. Seasonal electric pricing for convenience.' },
+            { icon: '🚤', title: 'All Boat Types Welcome', body: 'Sailboats, pontoons, motorboats, cruisers, and fishing boats. If it fits a slip, it\'s welcome at Boulder Marina.' },
+            { icon: '🔒', title: 'Seasonal Contracts', body: 'Annual slip contracts give you a reliable home dock through the full season without daily or weekly hassle.' },
+            { icon: '📶', title: 'Marina Amenities', body: 'Slip holders get access to the clubhouse, heated bathhouse, free WiFi, ship\'s store, private boat ramp, and gas dock.' },
+            { icon: '📍', title: 'Convenient Location', body: 'On the northeastern shore of Carlyle Lake — away from busy public beaches, with a quieter, more nautical atmosphere.' },
+          ].map(f => (
+            <article class="feature-card">
+              <span class="feature-icon" aria-hidden="true">{f.icon}</span>
+              <h3>{f.title}</h3>
+              <p>{f.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ── WHO IT'S FOR ── -->
+    <section class="section who-section">
+      <div class="container who-grid">
+        <div>
+          <p class="section-tag">Who Uses Our Slips</p>
+          <h2>Sailors, powerboaters, and everyone in between.</h2>
+          <p>Our slip holders come from across Southern Illinois, the Metro East, and the greater St. Louis area. Some race sailboats every weekend. Some bring the family out on a pontoon for a day on the water. Some live aboard during the season. All of them call Boulder Marina home.</p>
+          <p>If you're tired of trailering your boat every trip, a seasonal slip on Carlyle Lake changes the experience entirely. Your boat is always ready. You just show up.</p>
+          <a href="/about" class="btn" style="margin-top: 8px; display: inline-block;">About Boulder Marina</a>
+        </div>
+        <div class="who-links">
+          <p class="section-tag">Related Pages</p>
+          <ul class="related-list">
+            <li><a href="/sailboat-marina">Sailboat slips on Carlyle Lake →</a></li>
+            <li><a href="/motorboats-pontoons">Motorboat & pontoon slips →</a></li>
+            <li><a href="/boat-storage">Boat storage on Carlyle Lake →</a></li>
+            <li><a href="/marina-near-st-louis">Marina near St. Louis →</a></li>
+            <li><a href="/services">Full rate sheet →</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FAQ ── -->
+    <section class="section faq-section">
+      <div class="container faq-inner">
+        <p class="section-tag">Common Questions</p>
+        <h2>Boat slip FAQs</h2>
+        <dl class="faq-list">
+          {faqs.map(f => (
+            <div class="faq-item">
+              <dt>{f.q}</dt>
+              <dd>{f.a}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+
+    <!-- ── CTA ── -->
+    <section class="cta-banner">
+      <div class="container cta-inner">
+        <div>
+          <p class="section-tag">2026 Season</p>
+          <h2>Ready to claim your slip on Carlyle Lake?</h2>
+          <p>Contact Boulder Marina to ask about current availability for sailboats, pontoons, motorboats, and cruisers.</p>
+        </div>
+        <div class="cta-buttons">
+          <a href="/contact#slip-reservation" class="btn btn--fill">Request Slip Availability</a>
+          <a href="/services" class="btn">View All Rates</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-masthead { position: relative; width: 100%; line-height: 0; }
+  .page-masthead-img { width: 100%; height: auto; display: block; filter: brightness(0.85) saturate(0.85); }
+  .page-masthead-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(6,9,15,0.45) 0%, rgba(6,9,15,0.15) 40%, rgba(6,9,15,0.7) 100%);
+  }
+  .page-masthead-content {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding-bottom: clamp(16px, 4%, 36px); z-index: 10;
+  }
+  .page-masthead-content h1 {
+    font-family: var(--font-serif); font-weight: 700;
+    font-size: clamp(32px, 5vw, 68px); color: #fff; line-height: 1.05; margin-top: 8px;
+  }
+  .breadcrumb {
+    font-size: 11px; letter-spacing: 1px; color: rgba(221,213,196,0.55);
+    display: flex; align-items: center; gap: 8px; margin-bottom: 6px;
+  }
+  .breadcrumb a { color: var(--gold); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .section { padding: var(--section-pad) 0; }
+
+  .intro-section { background: var(--navy); }
+  .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+  .intro-text h2 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(24px, 3vw, 40px); line-height: 1.15; margin-bottom: 20px; }
+  .intro-text p { font-size: 15px; line-height: 1.85; color: rgba(221,213,196,0.82); margin-bottom: 16px; }
+  .intro-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 24px; }
+  .intro-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--gold-dim); }
+  .stat-box { background: var(--navy-mid); padding: 28px 20px; }
+  .stat-val { display: block; font-family: var(--font-serif); font-weight: 700; font-size: clamp(22px, 2.8vw, 36px); color: var(--gold); line-height: 1; margin-bottom: 6px; }
+  .stat-label { display: block; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: rgba(221,213,196,0.78); }
+
+  .features-section { background: var(--navy-mid); border-top: 1px solid var(--gold-dim); border-bottom: 1px solid var(--gold-dim); }
+  .features-section h2 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(24px, 3vw, 40px); margin-bottom: 48px; }
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--gold-glow); }
+  .feature-card { padding: 32px 24px; background: rgba(255,255,255,0.02); border: 1px solid var(--gold-dim); transition: background .3s; }
+  .feature-card:hover { background: var(--gold-glow); }
+  .feature-icon { font-size: 24px; display: block; margin-bottom: 14px; }
+  .feature-card h3 { font-family: var(--font-serif); font-weight: 600; font-size: 19px; margin-bottom: 10px; }
+  .feature-card p { font-size: 14px; line-height: 1.85; color: rgba(221,213,196,0.78); }
+
+  .who-section { background: var(--navy); }
+  .who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+  .who-grid h2 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(24px, 3vw, 38px); margin-bottom: 20px; }
+  .who-grid p { font-size: 15px; line-height: 1.85; color: rgba(221,213,196,0.82); margin-bottom: 14px; }
+  .who-links { background: var(--navy-mid); border: 1px solid var(--gold-dim); padding: 36px; }
+  .related-list { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 16px; }
+  .related-list a { font-size: 14px; color: rgba(221,213,196,0.78); text-decoration: none; transition: color .2s; }
+  .related-list a:hover { color: var(--gold); }
+
+  .faq-section { background: var(--navy-mid); border-top: 1px solid var(--gold-dim); }
+  .faq-inner { max-width: 780px; }
+  .faq-section h2 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(24px, 3vw, 38px); margin-bottom: 40px; }
+  .faq-list { display: flex; flex-direction: column; gap: 0; }
+  .faq-item { border-bottom: 1px solid var(--gold-dim); padding: 24px 0; }
+  .faq-item dt { font-family: var(--font-serif); font-weight: 600; font-size: 18px; margin-bottom: 10px; color: var(--cream); }
+  .faq-item dd { font-size: 14px; line-height: 1.85; color: rgba(221,213,196,0.78); margin: 0; }
+
+  .cta-banner { background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy-mid) 100%); border-top: 1px solid var(--gold-dim); padding: 80px 0; }
+  .cta-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 36px; }
+  .cta-inner h2 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(24px, 3vw, 40px); margin-bottom: 12px; }
+  .cta-inner p { font-size: 15px; color: rgba(221,213,196,0.78); max-width: 480px; line-height: 1.8; }
+  .cta-buttons { display: flex; gap: 16px; flex-wrap: wrap; flex-shrink: 0; }
+
+  @media (max-width: 960px) {
+    .intro-grid, .who-grid { grid-template-columns: 1fr; gap: 40px; }
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .features-grid { grid-template-columns: 1fr; }
+  }
+</style>

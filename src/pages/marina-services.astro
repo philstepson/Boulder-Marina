@@ -1,0 +1,176 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav        from '../components/Nav.astro';
+import Footer     from '../components/Footer.astro';
+
+const services = [
+  { icon: '⚓', title: 'Slip Rentals', detail: 'From $139.50/mo', body: 'Floating concrete slips for vessels 18–37 ft. Water and shore power at every slip. Seasonal contracts available.' },
+  { icon: '🏗️', title: 'Lift-In / Lift-Out', detail: '$200/ride', body: 'Scheduled haul-outs and launches. Book in advance, especially at the start and end of season. Labor $125/hr thereafter.' },
+  { icon: '🎨', title: 'Bottom Paint', detail: '$30/ft', body: 'Full bottom paint service including sanding, wash, and materials. Keeps your hull clean and performing all season.' },
+  { icon: '🚿', title: 'Power Wash', detail: '$75 bottom', body: 'Bottom power wash available as a standalone service or as part of a haul-out package.' },
+  { icon: '🏠', title: 'Dry Storage', detail: '$99/mo', body: 'On-site dry storage year-round. Cradle, trailer, and jack stand storage also available at $75/season.' },
+  { icon: '⛽', title: 'Gas Dock', detail: 'On site', body: 'Fuel dock available for members and transient boaters. No long drive to the pump — fill up and get back on the water.' },
+  { icon: '⚡', title: 'Shore Power', detail: 'Seasonal', body: '$50/season for vessels under 24 ft. $80/season for 25 ft and up. Included with slip contract.' },
+  { icon: '🔩', title: 'Yard Labor', detail: '$125/hr', body: 'Skilled yard labor for seasonal projects. Contact the marina to discuss your needs and schedule availability.' },
+];
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.bouldermarina.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Marina Services', item: 'https://www.bouldermarina.com/marina-services/' },
+  ],
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Marina Services on Carlyle Lake',
+  provider: { '@id': 'https://www.bouldermarina.com/#localbusiness' },
+  areaServed: [
+    { '@type': 'Place', name: 'Carlyle Lake' },
+    { '@type': 'Place', name: 'Southern Illinois' },
+    { '@type': 'Place', name: 'Greater St. Louis' },
+  ],
+  serviceType: 'Full-service marina',
+  description: 'Marina services for sailboats, motorboats, pontoons, and seasonal boaters on Carlyle Lake including slip rental, haul-out, storage, bottom paint, and yard labor.',
+};
+---
+
+<BaseLayout
+  title="Marina Services on Carlyle Lake | Boulder Marina"
+  description="Full marina services on Carlyle Lake for sailboats, motorboats, and pontoons — slip rentals, haul-out, bottom paint, dry storage, shore power, and yard labor near St. Louis."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+
+  <Nav />
+
+  <main>
+
+    <div class="page-masthead">
+      <img
+        src="/uploads/marina-panorama.jpg"
+        alt="Boulder Marina services — slips, haul-out, storage on Carlyle Lake"
+        width="1024" height="298"
+        loading="eager" fetchpriority="high"
+        class="page-masthead-img"
+      />
+      <div class="page-masthead-overlay" aria-hidden="true"></div>
+      <div class="page-masthead-content container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span aria-hidden="true">›</span> <span>Marina Services</span>
+        </nav>
+        <h1>Marina Services on Carlyle Lake</h1>
+      </div>
+    </div>
+
+    <section class="section intro-section">
+      <div class="container">
+        <p class="section-tag">Boulder Marina · Full-Service</p>
+        <h2>Everything your boat needs — under one roof on Carlyle Lake.</h2>
+        <p class="intro-p">Boulder Marina is a full-service marina on the northeastern shore of Carlyle Lake, serving sailboat, motorboat, pontoon, and cruiser owners from Southern Illinois and the greater St. Louis area. From seasonal slip contracts to haul-out service, bottom paint, and dry storage, we handle the practical side of boat ownership so you can focus on the lake.</p>
+        <div class="services-grid">
+          {services.map(s => (
+            <article class="svc-card">
+              <span class="svc-icon" aria-hidden="true">{s.icon}</span>
+              <div class="svc-header">
+                <h3>{s.title}</h3>
+                <span class="svc-price">{s.detail}</span>
+              </div>
+              <p>{s.body}</p>
+            </article>
+          ))}
+        </div>
+        <div class="services-ctas">
+          <a href="/services" class="btn btn--fill">Full Rate Sheet</a>
+          <a href="/contact" class="btn">Contact the Marina</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section links-section">
+      <div class="container links-grid">
+        <div>
+          <p class="section-tag">Service Details</p>
+          <h2>Find what you need.</h2>
+          <p>Each service at Boulder Marina is designed to keep your boat in good shape and your season running smoothly. Whether you need a slip for the season, a haul-out at the end of it, or storage through the winter, the marina team can help.</p>
+          <p>Contact the marina directly for current availability — especially for lift scheduling, which books up at the start and end of each season.</p>
+        </div>
+        <div class="related-box">
+          <p class="section-tag">Related Pages</p>
+          <ul class="related-list">
+            <li><a href="/boat-slips">Seasonal boat slips on Carlyle Lake →</a></li>
+            <li><a href="/boat-storage">Boat storage on Carlyle Lake →</a></li>
+            <li><a href="/sailboat-marina">Sailboat marina on Carlyle Lake →</a></li>
+            <li><a href="/motorboats-pontoons">Motorboat & pontoon slips →</a></li>
+            <li><a href="/services">Full rate sheet →</a></li>
+            <li><a href="/contact">Contact the marina →</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-banner">
+      <div class="container cta-inner">
+        <div>
+          <p class="section-tag">2026 Season</p>
+          <h2>Ready to get your boat sorted for the season?</h2>
+          <p>Contact Boulder Marina to discuss slip availability, haul-out scheduling, storage, or any other service for your boat on Carlyle Lake.</p>
+        </div>
+        <div class="cta-buttons">
+          <a href="/contact" class="btn btn--fill">Contact the Marina</a>
+          <a href="/services" class="btn">View Full Rates</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-masthead { position: relative; width: 100%; line-height: 0; }
+  .page-masthead-img { width: 100%; height: auto; display: block; filter: brightness(0.85) saturate(0.85); }
+  .page-masthead-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(6,9,15,0.45) 0%, rgba(6,9,15,0.15) 40%, rgba(6,9,15,0.7) 100%); }
+  .page-masthead-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: clamp(16px, 4%, 36px); z-index: 10; }
+  .page-masthead-content h1 { font-family: var(--font-serif); font-weight: 700; font-size: clamp(32px, 5vw, 68px); color: #fff; line-height: 1.05; margin-top: 8px; }
+  .breadcrumb { font-size: 11px; letter-spacing: 1px; color: rgba(221,213,196,0.55); display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .breadcrumb a { color: var(--gold); text-decoration: none; }
+
+  .section { padding: var(--section-pad) 0; }
+  .intro-section { background: var(--navy); }
+  .intro-section h2 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(24px, 3vw, 40px); line-height: 1.15; margin-bottom: 20px; }
+  .intro-p { font-size: 15px; line-height: 1.85; color: rgba(221,213,196,0.82); max-width: 780px; margin-bottom: 48px; }
+  .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--gold-glow); }
+  .svc-card { padding: 28px 22px; background: rgba(255,255,255,0.02); border: 1px solid var(--gold-dim); transition: background .3s; }
+  .svc-card:hover { background: var(--gold-glow); }
+  .svc-icon { font-size: 22px; display: block; margin-bottom: 12px; }
+  .svc-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; gap: 8px; }
+  .svc-header h3 { font-family: var(--font-serif); font-weight: 600; font-size: 18px; }
+  .svc-price { font-size: 11px; color: var(--gold); white-space: nowrap; }
+  .svc-card p { font-size: 13px; line-height: 1.8; color: rgba(221,213,196,0.78); }
+  .services-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 48px; }
+
+  .links-section { background: var(--navy-mid); border-top: 1px solid var(--gold-dim); border-bottom: 1px solid var(--gold-dim); }
+  .links-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+  .links-grid h2 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(24px, 3vw, 38px); margin-bottom: 20px; }
+  .links-grid p { font-size: 15px; line-height: 1.85; color: rgba(221,213,196,0.82); margin-bottom: 14px; }
+  .related-box { background: var(--navy); border: 1px solid var(--gold-dim); padding: 36px; }
+  .related-list { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 16px; }
+  .related-list a { font-size: 14px; color: rgba(221,213,196,0.78); text-decoration: none; transition: color .2s; }
+  .related-list a:hover { color: var(--gold); }
+
+  .cta-banner { background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy-mid) 100%); border-top: 1px solid var(--gold-dim); padding: 80px 0; }
+  .cta-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 36px; }
+  .cta-inner h2 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(24px, 3vw, 40px); margin-bottom: 12px; }
+  .cta-inner p { font-size: 15px; color: rgba(221,213,196,0.78); max-width: 480px; line-height: 1.8; }
+  .cta-buttons { display: flex; gap: 16px; flex-wrap: wrap; flex-shrink: 0; }
+
+  @media (max-width: 960px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .links-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+  @media (max-width: 600px) { .services-grid { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,241 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav        from '../components/Nav.astro';
+import Footer     from '../components/Footer.astro';
+
+const faqs = [
+  {
+    q: 'Is Carlyle Lake a good lake for sailboats?',
+    a: 'Carlyle Lake is widely regarded as one of the premier inland sailing lakes in the Midwest. At 26,000 acres, it offers consistent wind, enough fetch for keelboats, and deep enough water to sail without constantly worrying about the bottom. It\'s been a destination for serious sailors for decades.',
+  },
+  {
+    q: 'Does Boulder Marina support sailboat owners?',
+    a: 'Yes. Boulder Marina has a strong sailing heritage and is the home port of Boulder Yacht Club, founded in 1983. The marina welcomes sailboats of all sizes and has the infrastructure — floating concrete docks, lift service, shore power, and a knowledgeable community — to support them.',
+  },
+  {
+    q: 'Are sailboat slips available at Boulder Marina?',
+    a: 'Boulder Marina offers slips for vessels 18 to 37 feet. Contact the marina directly for current sailboat slip availability, as it changes through the season.',
+  },
+  {
+    q: 'Is there a sailing community at Carlyle Lake?',
+    a: 'Carlyle Lake has an active sailing community. Boulder Yacht Club runs eight club races per season including the Moonlight Regatta, Renshaw Regatta, and Commodore\'s Cup, plus a full social calendar. Sailors of all experience levels are welcome — including those who have never raced before.',
+  },
+  {
+    q: 'Can I step my mast at Boulder Marina?',
+    a: 'Contact the marina directly to discuss your mast stepping needs. The team can advise on what\'s possible with the available lift and yard equipment.',
+  },
+];
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.bouldermarina.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Sailboat Marina', item: 'https://www.bouldermarina.com/sailboat-marina/' },
+  ],
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Sailboat Marina on Carlyle Lake',
+  provider: { '@id': 'https://www.bouldermarina.com/#localbusiness' },
+  areaServed: [
+    { '@type': 'Place', name: 'Carlyle Lake' },
+    { '@type': 'Place', name: 'Southern Illinois' },
+    { '@type': 'Place', name: 'Greater St. Louis' },
+  ],
+  serviceType: 'Sailboat marina and slip rental',
+  description: 'Sailboat slips, sailing community access, and marina support on Carlyle Lake for sailors from Southern Illinois and the St. Louis area.',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(f => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Sailboat Marina on Carlyle Lake | Boulder Marina"
+  description="Sailboat slips, sailing community access, and marina support on Carlyle Lake for sailors from Southern Illinois and the greater St. Louis area. Home of Boulder Yacht Club since 1983."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <Nav />
+
+  <main>
+
+    <div class="page-masthead">
+      <img
+        src="/uploads/marina-panorama.jpg"
+        alt="Sailboats at Boulder Marina on Carlyle Lake, Illinois"
+        width="1024" height="298"
+        loading="eager" fetchpriority="high"
+        class="page-masthead-img"
+      />
+      <div class="page-masthead-overlay" aria-hidden="true"></div>
+      <div class="page-masthead-content container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span aria-hidden="true">›</span> <span>Sailboat Marina</span>
+        </nav>
+        <h1>Sailboat Marina on Carlyle Lake</h1>
+      </div>
+    </div>
+
+    <!-- ── INTRO ── -->
+    <section class="section intro-section">
+      <div class="container intro-grid">
+        <div class="intro-text">
+          <p class="section-tag">Boulder Marina · Home of Boulder Yacht Club</p>
+          <h2>The Midwest's premier inland sailing destination — and a marina that gets it.</h2>
+          <p>
+            Carlyle Lake isn't just a place to sail. It's consistently ranked among the top inland
+            sailing lakes in the country — 26,000 acres, reliable wind, and water deep enough for
+            keelboats. Boulder Marina sits on the northeastern shore, away from the public beaches,
+            with a quieter, more nautical atmosphere that serious sailors appreciate.
+          </p>
+          <p>
+            We're the home port of <a href="/boulder-yacht-club">Boulder Yacht Club</a>, founded
+            here in 1983. If you're a sailor from Southern Illinois or the greater St. Louis area
+            looking for a slip, a sailing community, or just a reliable place to keep your boat,
+            Boulder Marina is worth the call.
+          </p>
+          <div class="intro-ctas">
+            <a href="/contact#slip-reservation" class="btn btn--fill">Request Sailboat Slip</a>
+            <a href="/sailing-carlyle-lake" class="btn">Sailing on Carlyle Lake</a>
+          </div>
+        </div>
+        <div class="byc-callout">
+          <p class="section-tag">Boulder Yacht Club</p>
+          <p class="byc-stat">Est. 1983</p>
+          <p>The only yacht club on the eastern shore of Carlyle Lake. Eight races per season, a full social calendar, and a community that welcomes sailors of every experience level — including those who've never raced before.</p>
+          <ul class="byc-races">
+            {['Moonlight Regatta', 'Renshaw Regatta', "Commodore's Cup", 'Midnight Regatta', "Cruiser's Cup", 'The Great Race'].map(r => (
+              <li>{r}</li>
+            ))}
+          </ul>
+          <a href="/boulder-yacht-club" class="btn" style="margin-top: 20px; display: inline-block;">Explore BYC</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FEATURES ── -->
+    <section class="section features-section">
+      <div class="container">
+        <p class="section-tag">What Sailors Get at Boulder Marina</p>
+        <h2>Infrastructure and community for sailboat owners.</h2>
+        <div class="features-grid">
+          {[
+            { icon: '⛵', title: 'Sailboat Slips', body: 'Floating concrete slips for vessels 18–37 ft. Contact the marina for current availability. Seasonal contracts available.' },
+            { icon: '🏗️', title: 'Lift Service', body: 'Scheduled haul-outs and launches for sailboats. The lift handles the heavy work so you don\'t have to. $200/ride, $125/hr labor thereafter.' },
+            { icon: '🎨', title: 'Bottom Paint', body: 'Full bottom paint service on site — sanding, wash, and materials. $30/ft. Keep your hull clean without leaving the lake.' },
+            { icon: '⚡', title: 'Shore Power', body: 'Shore power available at every slip. Seasonal electric pricing: $50/season for vessels under 24 ft, $80/season for 25 ft and up.' },
+            { icon: '🏠', title: 'Dry Storage', body: 'On-site dry storage for the off-season. $99/month. Cradle, trailer, and jack stand storage also available at $75/season.' },
+            { icon: '🧭', title: 'Sailing Community', body: 'BYC races, regattas, and social events all season. Come crew in a race before you buy a boat — newcomers are always welcome.' },
+          ].map(f => (
+            <article class="feature-card">
+              <span class="feature-icon" aria-hidden="true">{f.icon}</span>
+              <h3>{f.title}</h3>
+              <p>{f.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FAQ ── -->
+    <section class="section faq-section">
+      <div class="container faq-inner">
+        <p class="section-tag">Common Questions</p>
+        <h2>Sailboat marina FAQs</h2>
+        <dl class="faq-list">
+          {faqs.map(f => (
+            <div class="faq-item">
+              <dt>{f.q}</dt>
+              <dd>{f.a}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+
+    <!-- ── CTA ── -->
+    <section class="cta-banner">
+      <div class="container cta-inner">
+        <div>
+          <p class="section-tag">Carlyle Lake · 26,000 Acres</p>
+          <h2>Find your sailboat slip on Carlyle Lake.</h2>
+          <p>Contact Boulder Marina to discuss sailboat slip availability, lift scheduling, or anything else you need to get on the water.</p>
+        </div>
+        <div class="cta-buttons">
+          <a href="/contact#slip-reservation" class="btn btn--fill">Request a Slip</a>
+          <a href="/boulder-yacht-club" class="btn">Explore BYC</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-masthead { position: relative; width: 100%; line-height: 0; }
+  .page-masthead-img { width: 100%; height: auto; display: block; filter: brightness(0.85) saturate(0.85); }
+  .page-masthead-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(6,9,15,0.45) 0%, rgba(6,9,15,0.15) 40%, rgba(6,9,15,0.7) 100%); }
+  .page-masthead-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: clamp(16px, 4%, 36px); z-index: 10; }
+  .page-masthead-content h1 { font-family: var(--font-serif); font-weight: 700; font-size: clamp(32px, 5vw, 68px); color: #fff; line-height: 1.05; margin-top: 8px; }
+  .breadcrumb { font-size: 11px; letter-spacing: 1px; color: rgba(221,213,196,0.55); display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .breadcrumb a { color: var(--gold); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .section { padding: var(--section-pad) 0; }
+  .intro-section { background: var(--navy); }
+  .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+  .intro-text h2 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(24px, 3vw, 40px); line-height: 1.15; margin-bottom: 20px; }
+  .intro-text p { font-size: 15px; line-height: 1.85; color: rgba(221,213,196,0.82); margin-bottom: 16px; }
+  .intro-text a { color: var(--gold); text-decoration: none; }
+  .intro-text a:hover { text-decoration: underline; }
+  .intro-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 24px; }
+  .byc-callout { background: var(--navy-mid); border: 1px solid var(--gold-dim); padding: 40px; }
+  .byc-stat { font-family: var(--font-serif); font-weight: 700; font-size: 42px; color: var(--gold); line-height: 1; margin: 4px 0 16px; }
+  .byc-callout p { font-size: 14px; line-height: 1.85; color: rgba(221,213,196,0.78); margin-bottom: 16px; }
+  .byc-races { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .byc-races li { font-size: 13px; color: rgba(221,213,196,0.72); padding-left: 16px; position: relative; }
+  .byc-races li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
+
+  .features-section { background: var(--navy-mid); border-top: 1px solid var(--gold-dim); border-bottom: 1px solid var(--gold-dim); }
+  .features-section h2 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(24px, 3vw, 40px); margin-bottom: 48px; }
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--gold-glow); }
+  .feature-card { padding: 32px 24px; background: rgba(255,255,255,0.02); border: 1px solid var(--gold-dim); transition: background .3s; }
+  .feature-card:hover { background: var(--gold-glow); }
+  .feature-icon { font-size: 24px; display: block; margin-bottom: 14px; }
+  .feature-card h3 { font-family: var(--font-serif); font-weight: 600; font-size: 19px; margin-bottom: 10px; }
+  .feature-card p { font-size: 14px; line-height: 1.85; color: rgba(221,213,196,0.78); }
+
+  .faq-section { background: var(--navy); border-top: 1px solid var(--gold-dim); }
+  .faq-inner { max-width: 780px; }
+  .faq-section h2 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(24px, 3vw, 38px); margin-bottom: 40px; }
+  .faq-list { display: flex; flex-direction: column; }
+  .faq-item { border-bottom: 1px solid var(--gold-dim); padding: 24px 0; }
+  .faq-item dt { font-family: var(--font-serif); font-weight: 600; font-size: 18px; margin-bottom: 10px; color: var(--cream); }
+  .faq-item dd { font-size: 14px; line-height: 1.85; color: rgba(221,213,196,0.78); margin: 0; }
+
+  .cta-banner { background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy-mid) 100%); border-top: 1px solid var(--gold-dim); padding: 80px 0; }
+  .cta-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 36px; }
+  .cta-inner h2 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(24px, 3vw, 40px); margin-bottom: 12px; }
+  .cta-inner p { font-size: 15px; color: rgba(221,213,196,0.78); max-width: 480px; line-height: 1.8; }
+  .cta-buttons { display: flex; gap: 16px; flex-wrap: wrap; flex-shrink: 0; }
+
+  @media (max-width: 960px) {
+    .intro-grid { grid-template-columns: 1fr; gap: 40px; }
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) { .features-grid { grid-template-columns: 1fr; } }
+</style>

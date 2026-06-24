@@ -184,8 +184,8 @@ TinaCMS requires a specific software component (`better-sqlite3`) that needs com
 Here's how the three pieces fit together once TinaCMS is active:
 
 ```
-┌─────────────────────┐     saves content      ┌───────────────────┐
-│   TinaCMS Admin     │ ─────────────────────► │   GitHub Repo     │
+┌─────────────────────┐     saves content       ┌───────────────────┐
+│   TinaCMS Admin     │ ─────────────────────►  │   GitHub Repo     │
 │  (bouldermarina.com │                         │  (source of truth │
 │        /admin)      │                         │   every change    │
 │                     │                         │   is versioned)   │
