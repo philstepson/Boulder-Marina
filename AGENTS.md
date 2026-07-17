@@ -195,15 +195,8 @@ No environment variables needed (TinaCMS removed). Cloudflare Pages build comman
 1. **Walk every page on https://boulder-marina.pages.dev** — verify images, nav, forms, mobile layout, map embed. This is the exact build that will go live; fix anything before flipping DNS.
 2. Test both reservation forms end-to-end: submit triggers the mail client with correct subject/body, success card appears, close resets the modal.
 3. Owner reviews and approves all 15 pages on https://boulder-marina.pages.dev
-4. Create `public/_redirects` for WordPress URL compatibility (prevents 404s for anyone following old links):
-   ```
-   /gallery/              /gallery              301
-   /boulder-yacht-club/   /boulder-yacht-club   301
-   /services/             /services             301
-   /about/                /about                301
-   /contact/              /contact              301
-   /boats-for-sale/       /boats-for-sale       301
-   ```
+4. `public/_redirects` handles WordPress URL compatibility (prevents 404s for anyone following old links) — see the file for the current rules.
+   **Important:** every page here builds to a directory (`dist/<page>/index.html`), and Cloudflare Pages already auto-redirects bare paths like `/contact` to the trailing-slash form `/contact/` to serve it. Old WordPress links (which used trailing slashes, e.g. `https://bouldermarina.com/gallery/`) already land on the correct new page with zero redirects needed. **Do not** add a rule sending the trailing-slash form back to the bare path — that fights Cloudflare's own redirect and creates an infinite loop (this happened once; fixed in commit that removed the bare-path bounce rules). Only add `_redirects` entries for paths that have no corresponding built page (e.g. `/ship-store/`, `/wp-admin/*`).
    Crawl the live WordPress site with `wget --spider` to catch any additional URLs.
 5. Add Cloudflare Pages custom domain → set `bouldermarina.com` CNAME → `boulder-marina.pages.dev`
 6. Submit new sitemap to Google Search Console

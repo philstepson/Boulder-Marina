@@ -1,22 +1,12 @@
 # Cloudflare Pages redirects
-# Trailing-slash → canonical (prevents duplicate content; matches WordPress URL pattern)
-
-/about/                   /about                   301
-/services/                /services                301
-/events/                  /events                  301
-/gallery/                 /gallery                 301
-/boulder-yacht-club/      /boulder-yacht-club      301
-/boats-for-sale/          /boats-for-sale          301
-/contact/                 /contact                 301
-
-# SEO landing pages
-/boat-slips/              /boat-slips              301
-/sailboat-marina/         /sailboat-marina         301
-/motorboats-pontoons/     /motorboats-pontoons     301
-/boat-storage/            /boat-storage            301
-/marina-services/         /marina-services         301
-/marina-near-st-louis/    /marina-near-st-louis    301
-/sailing-carlyle-lake/    /sailing-carlyle-lake    301
+#
+# NOTE: every page here builds to a directory (dist/<page>/index.html), and
+# Cloudflare Pages already auto-redirects bare paths like /contact to the
+# trailing-slash form /contact/ to serve it. Old WordPress links (which used
+# trailing slashes, e.g. https://bouldermarina.com/gallery/) therefore already
+# land on the correct new page with zero redirects needed. Do NOT add a rule
+# that sends the trailing-slash form back to the bare path — that fights
+# Cloudflare's own redirect and creates an infinite loop.
 
 # WordPress pages that exist on the old site but have no direct equivalent
 /ship-store/              /services                301
