@@ -89,10 +89,8 @@ import Footer     from '../components/Footer.astro';
           </p>
 
           <form
-            action="https://formspree.io/f/bouldermarina"
-            method="POST"
+            id="reservation-form"
             class="reservation-form"
-            novalidate
           >
             <div class="form-row">
               <div class="form-group">
@@ -156,6 +154,13 @@ import Footer     from '../components/Footer.astro';
               See our <a href="/services">full rate sheet</a> for current pricing.
             </p>
           </form>
+
+          <div id="reservation-success" hidden class="reservation-success">
+            <p class="res-success-icon">✓</p>
+            <p class="res-success-head">Email client opened!</p>
+            <p class="form-intro">Your reservation details are pre-filled. Send the email in your mail app — we'll confirm availability within 24 hours.</p>
+            <a href="/contact" class="btn btn--fill" style="display:inline-block;margin-top:8px;">Start a New Request</a>
+          </div>
         </div>
 
       </div>
@@ -319,6 +324,18 @@ import Footer     from '../components/Footer.astro';
   .form-disclaimer a { color: var(--gold); text-decoration: none; }
   .form-disclaimer a:hover { text-decoration: underline; }
 
+  .reservation-success {
+    text-align: center;
+    padding: 48px 0 16px;
+  }
+  .res-success-icon {
+    font-size: 56px; color: var(--gold); line-height: 1; margin-bottom: 16px;
+  }
+  .res-success-head {
+    font-family: var(--font-serif); font-weight: 600;
+    font-size: clamp(24px, 3vw, 36px); color: #fff; margin-bottom: 14px;
+  }
+
   /* ── MAP ── */
   .map-strip { width: 100%; line-height: 0; border-top: 1px solid var(--gold-dim); }
   .map-strip iframe { display: block; filter: saturate(0.75) brightness(0.95); }
@@ -328,3 +345,39 @@ import Footer     from '../components/Footer.astro';
     .contact-grid { grid-template-columns: 1fr; gap: 48px; }
   }
 </style>
+
+<script>
+  document.getElementById('reservation-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = e.currentTarget as HTMLFormElement;
+    const get = (id: string): string =>
+      (form.querySelector('#' + id) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null)?.value.trim() ?? '';
+
+    const lines = [
+      'SLIP RESERVATION REQUEST — Boulder Marina',
+      '==========================================',
+      '',
+      `Name:          ${get('name')}`,
+      `Phone:         ${get('phone')}`,
+      `Email:         ${get('email')}`,
+      `Vessel Length: ${get('boat-length')} ft`,
+      `Vessel Type:   ${get('boat-type') || 'N/A'}`,
+      `Slip Type:     ${get('slip-type') || 'N/A'}`,
+      `Start Date:    ${get('start-date') || 'TBD'}`,
+      '',
+      'Additional Information:',
+      get('message') || '(none)',
+    ];
+
+    const subject = encodeURIComponent(`Slip Reservation Request — ${get('name')}`);
+    const mailto = `mailto:bouldermarina@charter.net?subject=${subject}&body=${encodeURIComponent(lines.join('\n'))}`;
+    const link = document.createElement('a');
+    link.href = mailto;
+    link.click();
+
+    const formEl = document.getElementById('reservation-form') as HTMLElement | null;
+    const successEl = document.getElementById('reservation-success') as HTMLElement | null;
+    if (formEl) formEl.hidden = true;
+    if (successEl) successEl.hidden = false;
+  });
+</script>

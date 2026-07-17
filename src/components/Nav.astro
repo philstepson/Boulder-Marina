@@ -77,10 +77,8 @@ const currentPath = Astro.url.pathname;
     <p class="modal-intro">Fill out the form below and we'll confirm availability within 24 hours.</p>
 
     <form
-      action="https://formspree.io/f/bouldermarina"
-      method="POST"
+      id="modal-form"
       class="modal-form"
-      novalidate
     >
       <div class="mform-row">
         <div class="mform-group">
@@ -133,6 +131,13 @@ const currentPath = Astro.url.pathname;
       <button type="submit" class="btn btn--fill modal-submit">Send Reservation Request</button>
       <p class="modal-disclaimer">We'll follow up within 24 hours. See our <a href="/services">rate sheet</a> for pricing.</p>
     </form>
+
+    <div id="modal-success" hidden>
+      <p class="modal-success-icon">✓</p>
+      <p class="modal-success-head">Email client opened!</p>
+      <p class="modal-intro">Your reservation details are pre-filled and ready to send. Hit send in your mail app — we'll confirm availability within 24 hours.</p>
+      <button id="modal-success-close" class="btn btn--fill modal-submit">Close</button>
+    </div>
   </div>
 </div>
 
@@ -340,6 +345,18 @@ const currentPath = Astro.url.pathname;
   }
   .modal-disclaimer a { color: var(--gold); text-decoration: none; }
   .modal-disclaimer a:hover { text-decoration: underline; }
+
+  #modal-success {
+    text-align: center;
+    padding: 16px 0 8px;
+  }
+  .modal-success-icon {
+    font-size: 48px; color: var(--gold); line-height: 1; margin-bottom: 16px;
+  }
+  .modal-success-head {
+    font-family: var(--font-serif); font-weight: 600;
+    font-size: clamp(22px, 2.5vw, 32px); color: #fff; margin-bottom: 14px;
+  }
 </style>
 
 <script>
@@ -370,12 +387,53 @@ const currentPath = Astro.url.pathname;
   function closeModal() {
     modal?.setAttribute('hidden', '');
     document.body.style.overflow = '';
+    const form = document.getElementById('modal-form') as HTMLFormElement | null;
+    const success = document.getElementById('modal-success') as HTMLElement | null;
+    if (form) { form.hidden = false; form.reset(); }
+    if (success) success.hidden = true;
   }
 
   document.getElementById('reserve-btn')?.addEventListener('click', openModal);
   document.getElementById('reserve-btn-mobile')?.addEventListener('click', openModal);
   document.getElementById('modal-close')?.addEventListener('click', closeModal);
+  document.getElementById('modal-success-close')?.addEventListener('click', closeModal);
   backdrop?.addEventListener('click', closeModal);
+
+  document.getElementById('modal-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const get = (id: string): string =>
+      (document.getElementById(id) as HTMLInputElement | null)?.value.trim() ?? '';
+
+    const lines = [
+      'SLIP RESERVATION REQUEST — Boulder Marina',
+      '==========================================',
+      '',
+      `Name:           ${get('r-name')}`,
+      `Phone:          ${get('r-phone')}`,
+      `Boat Name:      ${get('r-boat')}`,
+      `Registration #: ${get('r-reg') || 'N/A'}`,
+      `Vessel Length:  ${get('r-length')} ft`,
+      `Arrival Date:   ${get('r-arrive')}`,
+      `Departure Date: ${get('r-depart') || 'TBD'}`,
+      `Arrival Time:   ${get('r-time') || 'TBD'}`,
+      '',
+      'Notes:',
+      get('r-notes') || '(none)',
+    ];
+
+    const subject = encodeURIComponent(
+      `Slip Reservation — ${get('r-boat') || get('r-name')}`
+    );
+    const mailto = `mailto:bouldermarina@charter.net?subject=${subject}&body=${encodeURIComponent(lines.join('\n'))}`;
+    const link = document.createElement('a');
+    link.href = mailto;
+    link.click();
+
+    const form = document.getElementById('modal-form') as HTMLElement | null;
+    const success = document.getElementById('modal-success') as HTMLElement | null;
+    if (form) form.hidden = true;
+    if (success) success.hidden = false;
+  });
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !modal?.hasAttribute('hidden')) closeModal();

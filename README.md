@@ -2,7 +2,7 @@
 
 **Live site (current WordPress):** https://bouldermarina.com
 **New site preview:** https://boulder-marina.pages.dev (pending DNS cutover — owner approval required)
-**Tech stack:** Astro 6 · Static output · Cloudflare Pages · Formspree
+**Tech stack:** Astro 7 · Static output · Cloudflare Pages · `mailto:` forms (Formspree planned)
 
 > TinaCMS was removed due to a native module compile failure on Node 26 (no Xcode CLT).
 > All content is currently hardcoded in the Astro page files. TinaCMS can be re-added once
@@ -35,14 +35,21 @@ boulder-marina/
     │   ├── Nav.astro           # Sticky nav + Reserve a Slip modal + mobile drawer
     │   └── Footer.astro        # Marina + BYC links, hours, contact
     └── pages/
-        ├── index.astro              # Homepage — aerial hero + BYC cross-promo
-        ├── about.astro              # Marina history, amenities, location/hours
-        ├── services.astro           # Full rate table (all 20 slip sizes) + labor
-        ├── events.astro             # 2025 BYC calendar — filterable by category
-        ├── boulder-yacht-club.astro # BYC hub — racing, social events, membership
-        ├── gallery.astro            # Masonry gallery — 3 albums, lightbox
-        ├── boats-for-sale.astro     # Resource directory + member listing placeholder
-        └── contact.astro            # Contact info + slip reservation form + map
+        ├── index.astro                # Homepage — aerial hero + BYC cross-promo
+        ├── about.astro                # Marina history, amenities, location/hours
+        ├── services.astro             # Full rate table (all 20 slip sizes) + labor
+        ├── events.astro               # 2026 BYC calendar — filterable by category
+        ├── boulder-yacht-club.astro   # BYC hub — racing, social events, membership
+        ├── gallery.astro              # Masonry gallery — 3 albums, lightbox
+        ├── boats-for-sale.astro       # Resource directory + member listing placeholder
+        ├── contact.astro              # Contact info + slip reservation form + map
+        ├── boat-slips.astro           # SEO landing — "boat slips Carlyle Lake"
+        ├── sailboat-marina.astro      # SEO landing — "sailboat marina Carlyle Lake"
+        ├── motorboats-pontoons.astro  # SEO landing — "pontoon slips Carlyle Lake"
+        ├── boat-storage.astro         # SEO landing — "boat storage Carlyle Lake"
+        ├── marina-services.astro      # SEO landing — "marina services Carlyle Lake"
+        ├── marina-near-st-louis.astro # SEO landing — "marina near St. Louis"
+        └── sailing-carlyle-lake.astro # SEO landing — "sailing Carlyle Lake"
 ```
 
 ---
@@ -95,7 +102,7 @@ Shared utility classes: `.container`, `.section-tag`, `.btn`, `.btn--fill`, `.go
 - 8 nav links + "Reserve a Slip" CTA button (desktop) + hamburger drawer (mobile ≤960px)
 - **Reserve a Slip modal** — opens on CTA click, closes on backdrop click / ✕ / Escape key
   - Form fields: name, phone, boat name, registration, vessel length, arrival/departure date, arrival time, notes
-  - Posts to Formspree (`https://formspree.io/f/bouldermarina`) — endpoint needs registration
+  - Submits via `mailto:` to `bouldermarina@charter.net` (interim, until Formspree is set up)
 
 ### Footer (`src/components/Footer.astro`)
 - Marina contact: phone, email, address, store hours
@@ -118,24 +125,20 @@ Shared utility classes: `.container`, `.section-tag`, `.btn`, `.btn--fill`, `.go
 
 ---
 
-## Forms (Formspree)
+## Forms (`mailto:` interim)
 
-Both the Nav modal and the Contact page form post to Formspree.
-**Before going live:** register the endpoint at formspree.io and replace `bouldermarina` in both form `action` attributes with the real endpoint ID.
+Both the Nav modal and the Contact page form build a pre-populated `mailto:bouldermarina@charter.net` link on submit and open the visitor's mail client — no backend required. A success card replaces the form once the mail client opens.
 
-Files to update:
-- `src/components/Nav.astro` — modal form action
-- `src/pages/contact.astro` — reservation form action
+**Migrating to Formspree later** (once the owner has an account): see the step-by-step guide in CLAUDE.md / AGENTS.md under "Migrate forms from mailto: → Formspree."
 
 ---
 
 ## Content Still Pending from Owner
 
-- [ ] 2026 event calendar with actual dates (Marina + BYC)
 - [ ] Boat listings currently for sale at the marina
 - [ ] Additional photos (beyond what's on the current WordPress site)
 - [ ] Confirmation that slip rates are unchanged for 2026
-- [ ] Owner approval of site before DNS cutover
+- [ ] Owner approval of all 15 pages before DNS cutover
 
 ---
 
@@ -143,9 +146,10 @@ Files to update:
 
 Before switching bouldermarina.com to the new site:
 
-- [ ] Register Formspree endpoint (replace placeholder ID in both forms)
-- [ ] Owner reviews and approves all pages
-- [ ] Generate `public/_redirects` from old WordPress URL structure (see CLAUDE.md)
+- [ ] Walk every page on https://boulder-marina.pages.dev — verify images, nav, forms, mobile layout, map embed
+- [ ] Test both reservation forms end-to-end (mail client opens with correct subject/body)
+- [ ] Owner reviews and approves all 15 pages
+- [x] Generate `public/_redirects` from old WordPress URL structure (see CLAUDE.md)
 - [x] Cloudflare Pages deployed → https://boulder-marina.pages.dev
 - [ ] Add custom domain → CNAME `boulder-marina.pages.dev` → `bouldermarina.com`
 - [ ] Submit new sitemap to Google Search Console
@@ -156,6 +160,6 @@ Before switching bouldermarina.com to the new site:
 
 - Homepage has a dedicated BYC section (events, officers, membership CTA)
 - `/boulder-yacht-club` page is a full BYC hub with racing, social events, Sea Scouts
-- Events page pulls from BYC calendar (2025 BYC events via Tribe Events REST API)
+- Events page pulls from BYC calendar (2026 BYC events via Tribe Events REST API)
 - Footer has a dedicated BYC column
 - All BYC external links point to boulderyc.org (stays live — not being replaced)

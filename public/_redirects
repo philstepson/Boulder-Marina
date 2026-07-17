@@ -1,0 +1,43 @@
+# Cloudflare Pages redirects
+# Trailing-slash → canonical (prevents duplicate content; matches WordPress URL pattern)
+
+/about/                   /about                   301
+/services/                /services                301
+/events/                  /events                  301
+/gallery/                 /gallery                 301
+/boulder-yacht-club/      /boulder-yacht-club      301
+/boats-for-sale/          /boats-for-sale          301
+/contact/                 /contact                 301
+
+# SEO landing pages
+/boat-slips/              /boat-slips              301
+/sailboat-marina/         /sailboat-marina         301
+/motorboats-pontoons/     /motorboats-pontoons     301
+/boat-storage/            /boat-storage            301
+/marina-services/         /marina-services         301
+/marina-near-st-louis/    /marina-near-st-louis    301
+/sailing-carlyle-lake/    /sailing-carlyle-lake    301
+
+# WordPress pages that exist on the old site but have no direct equivalent
+/ship-store/              /services                301
+/ship-store               /services                301
+/carlyle-lake-association/ /                       301
+/carlyle-lake-association  /                       301
+/links/                   /                        301
+/links                    /                        301
+
+# Old blog post
+/2021/04/18/hello-world/  /                        301
+/2021/04/18/hello-world   /                        301
+
+# WordPress archive / author URLs
+/author/admin/            /                        301
+/author/admin             /                        301
+/category/*               /                        301
+
+# WordPress admin, feeds, and XML-RPC — dead-end gracefully
+/wp-admin/*               /                        301
+/wp-login.php             /                        301
+/xmlrpc.php               /                        301
+/feed/                    /                        301
+/feed                     /                        301

@@ -1,6 +1,6 @@
-# CLAUDE.md — Boulder Marina Project Context
+# AGENTS.md — Boulder Marina Project Context
 
-> This file is the primary context document for Claude Code sessions.
+> This file is the primary context document for Codex sessions.
 > Read this before touching any file. Do not relitigate decisions marked final.
 
 ---
@@ -54,7 +54,8 @@ Shared classes in global.css: `.container`, `.section-tag`, `.btn`, `.btn--fill`
 
 ```
 boulder-marina/
-├── CLAUDE.md                          ← you are here
+├── AGENTS.md                          ← you are here
+├── CLAUDE.md                          ← mirrored context doc for Claude Code sessions
 ├── README.md                          ← developer + owner onboarding
 ├── astro.config.mjs                   ← site URL, integrations, static output
 ├── package.json
