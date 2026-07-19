@@ -141,7 +141,6 @@ boulder-marina/
 - Address: 26000 Boulder Access Rd, Boulder, IL 62231
 - Phone: (618) 226-3223
 - Email: bouldermarina@charter.net
-- VHF: Channel 16
 - All 20 slip rate rows (18–37 ft) — exact to the cent, in `slip-rates/index.json`
 - Labor rate: $125/hr
 - Lift-in/out: $200/ride (first 2 hrs)
@@ -151,7 +150,7 @@ boulder-marina/
 - Day use: $25 flat · Trailer parking: $7.50/day
 - Electric: $50/season (≤24ft) · $80/season (25ft+)
 - Cradle/trailer/jack stand: $75/season
-- Ship Store hours: Thu–Fri 11–6, Sat 9–5, Sun 9–3:30, Holidays 9–3:30
+- Ship Store hours: Thu 1–5, Fri–Sat 10–6, Sun 11–3, Holidays 9–3:30
 
 **Boulder Yacht Club (boulderyc.org)**
 - Founded: 1983 · 501(c)(7) nonprofit

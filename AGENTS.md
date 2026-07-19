@@ -142,7 +142,6 @@ boulder-marina/
 - Address: 26000 Boulder Access Rd, Boulder, IL 62231
 - Phone: (618) 226-3223
 - Email: bouldermarina@charter.net
-- VHF: Channel 16
 - All 20 slip rate rows (18–37 ft) — exact to the cent, in `slip-rates/index.json`
 - Labor rate: $125/hr
 - Lift-in/out: $200/ride (first 2 hrs)

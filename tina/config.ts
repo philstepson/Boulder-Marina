@@ -43,7 +43,6 @@ export default defineConfig({
           { name: 'phone',      label: 'Phone',       type: 'string' },
           { name: 'email',      label: 'Email',       type: 'string' },
           { name: 'address',    label: 'Address',     type: 'string' },
-          { name: 'vhfChannel', label: 'VHF Channel', type: 'string' },
           {
             name: 'storeHours', label: 'Ship Store Hours', type: 'object',
             fields: [

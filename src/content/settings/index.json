@@ -4,11 +4,10 @@
   "phone": "(618) 226-3223",
   "email": "bouldermarina@charter.net",
   "address": "26000 Boulder Access Rd, Boulder, IL 62231",
-  "vhfChannel": "16",
   "storeHours": {
-    "thuFri": "11:00 AM – 6:00 PM",
-    "sat": "9:00 AM – 5:00 PM",
-    "sun": "9:00 AM – 3:30 PM",
+    "thu": "1:00 PM – 5:00 PM",
+    "friSat": "10:00 AM – 6:00 PM",
+    "sun": "11:00 AM – 3:00 PM",
     "holiday": "9:00 AM – 3:30 PM"
   },
   "social": {
