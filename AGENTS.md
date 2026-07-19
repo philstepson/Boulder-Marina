@@ -151,7 +151,7 @@ boulder-marina/
 - Day use: $25 flat · Trailer parking: $7.50/day
 - Electric: $50/season (≤24ft) · $80/season (25ft+)
 - Cradle/trailer/jack stand: $75/season
-- Ship Store hours: Thu–Fri 11–6, Sat 9–5, Sun 9–3:30, Holidays 9–3:30
+- Ship Store hours: Thu 1–5, Fri–Sat 10–6, Sun 11–3, Holidays 9–3:30
 
 **Boulder Yacht Club (boulderyc.org)**
 - Founded: 1983 · 501(c)(7) nonprofit

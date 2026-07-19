@@ -46,8 +46,8 @@ export default defineConfig({
           {
             name: 'storeHours', label: 'Ship Store Hours', type: 'object',
             fields: [
-              { name: 'thuFri', label: 'Thursday – Friday', type: 'string' },
-              { name: 'sat',    label: 'Saturday',          type: 'string' },
+              { name: 'thu',    label: 'Thursday',          type: 'string' },
+              { name: 'friSat', label: 'Friday – Saturday', type: 'string' },
               { name: 'sun',    label: 'Sunday',            type: 'string' },
               { name: 'holiday',label: 'Holidays',          type: 'string' },
             ],
